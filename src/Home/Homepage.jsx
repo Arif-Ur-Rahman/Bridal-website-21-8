@@ -5,6 +5,7 @@ import Footer from './Shared/Footer';
 import Cover from './Section/Cover';
 import Vedios from './Section/Vedios';
 import NavbarNew from './Shared/NavbarNew';
+import ChooseUs from './Section/ChooseUs';
  
 
 const Homepage = () => {
@@ -16,6 +17,7 @@ const Homepage = () => {
             <HeroSection></HeroSection>
             <Reels></Reels>
             {/* <Collection></Collection> */}
+            <ChooseUs></ChooseUs>
             <Cover></Cover>
             <Vedios></Vedios>
             <Footer></Footer>
