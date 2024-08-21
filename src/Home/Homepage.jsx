@@ -6,6 +6,7 @@ import Cover from './Section/Cover';
 import Vedios from './Section/Vedios';
 import NavbarNew from './Shared/NavbarNew';
 import ChooseUs from './Section/ChooseUs';
+import Moments from './Section/Moments';
  
 
 const Homepage = () => {
@@ -18,6 +19,8 @@ const Homepage = () => {
             <Reels></Reels>
             {/* <Collection></Collection> */}
             <ChooseUs></ChooseUs>
+            <Moments></Moments>
+
             <Cover></Cover>
             <Vedios></Vedios>
             <Footer></Footer>
