@@ -9,6 +9,7 @@ import Bride from './Section/Bride';
 import Groom from './Section/Groom';
 import Moments from './Section/Moments';
 import Footer from './Shared/Footer';
+import WhatsApp from './WhatsApp';
 
 
 const Homepage = () => {
@@ -25,6 +26,7 @@ const Homepage = () => {
             <Moments />
             
             <Footer />
+            <WhatsApp></WhatsApp>
         </div>
     );
 };
