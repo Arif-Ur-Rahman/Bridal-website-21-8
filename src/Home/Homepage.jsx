@@ -10,6 +10,7 @@ import Groom from './Section/Groom';
 import Moments from './Section/Moments';
 import Footer from './Shared/Footer';
 import WhatsApp from './WhatsApp';
+import Scroll from './Scroll';
 
 
 const Homepage = () => {
@@ -27,6 +28,7 @@ const Homepage = () => {
             
             <Footer />
             <WhatsApp></WhatsApp>
+            <Scroll></Scroll>
         </div>
     );
 };

@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const WhatsAppButton = () => {
+const WhatsApp = () => {
   return (
     <a
-      href="https://wa.me/your-number" // Replace 'your-number' with your WhatsApp number
-      className="fixed bottom-5 right-5 bg-green-500 text-white p-4 rounded-full shadow-lg z-50 hover:bg-green-400 transition duration-300"
+      href="https://wa.me/1234567890" // Replace with your WhatsApp number
+      className="fixed bottom-5 right-5 bg-green-500 text-white p-3 rounded-full shadow-lg z-50 hover:bg-green-400 transition duration-300"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -14,4 +14,4 @@ const WhatsAppButton = () => {
   );
 };
 
-export default WhatsAppButton;
+export default WhatsApp;
