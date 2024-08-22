@@ -89,12 +89,12 @@ const Reels = () => {
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Video Lightbox"
-        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80"
+        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 "
         overlayClassName="fixed inset-0"
       >
         <button
           onClick={closeModal}
-          className="absolute top-4 right-4 text-white text-4xl"
+          className="absolute bottom-4 right-4 text-white text-4xl"
         >
           ×
         </button>
@@ -102,7 +102,7 @@ const Reels = () => {
           controls
           autoPlay
           src={currentVideo}
-          className="w-full max-w-4xl"
+          className="w-1/2 max-w-lg h-1/2"
         >
           Your browser does not support the video tag.
         </video>
