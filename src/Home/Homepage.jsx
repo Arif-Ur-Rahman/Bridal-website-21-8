@@ -8,14 +8,16 @@ import NavbarNew from './Shared/NavbarNew';
 import ChooseUs from './Section/ChooseUs';
 import Moments from './Section/Moments';
 import FeedbackModal from './Section/Feedback/FeedbackModal';
+import Collection from './Section/Collection';
 
 const Homepage = () => {
     return (
         <div className=''>
             <NavbarNew />
             <HeroSection />
-            <Reels />
             <ChooseUs />
+            <Collection></Collection>
+            <Reels />
             <Moments />
             <FeedbackModal /> {/* Modal will show immediately */}
             {/* <Cover />
