@@ -29,7 +29,7 @@ const NewCollections = () => {
             <div className="pt-5 pb-20 my-5">
                 <div className="container py-5">
                     <div className="text-center mx-auto mb-5" style={{ maxWidth: '500px' }}>
-                        <h1 className="text-4xl font-bold mb-4 py-6">Our New Collections</h1>
+                        <h1 className="text-3xl mb-4 py-6">Our New Collections</h1>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-10">
                         {imageItems.map((item, index) => (

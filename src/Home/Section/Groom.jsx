@@ -20,7 +20,7 @@ const Groom = () => {
 
   return (
     <section className="relative pt-16 pb-32 px-4 mb-8 bg-[#FDF5EB] font-mono mt-5">
-      <h1 className='text-center text-3xl mb-20'>Bridal Collections</h1>
+      <h1 className='text-center text-3xl mb-20'>Grooms Collections</h1>
       <div className="container mx-auto relative mt-4">
         <div className="relative">
           {/* Card Container */}

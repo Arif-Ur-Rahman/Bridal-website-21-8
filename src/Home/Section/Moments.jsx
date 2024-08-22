@@ -28,7 +28,7 @@ const MomentsWithCustomers = () => {
     <section className="container-xxl bg-[#FDF5EB] font-mono py-6">
       <div className="container">
         <div className="text-center mx-auto mb-5" style={{ maxWidth: '500px' }}>
-          <h1 className="display-6 mb-0 font-semibold text-3xl pt-6">Moments With Customers</h1>
+          <h1 className="display-6 mb-0 text-3xl pt-6">Moments With Customers</h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-10 py-6">
           {/* Manually position the images */}
