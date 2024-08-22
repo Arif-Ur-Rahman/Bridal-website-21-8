@@ -1,11 +1,11 @@
 import React from 'react';
-import a from "../../assets/img/1.jpeg";
-import b from "../../assets/img/2.jpeg";
-import c from "../../assets/img/3.jpeg";
-import d from "../../assets/img/4.jpg";
-import e from "../../assets/img/5.jpeg";
+import a from "../../assets/img/c1.jpg";
+import b from "../../assets/img/c2.jpg";
+import c from "../../assets/img/c3.jpg";
+import d from "../../assets/img/c4.jpg";
+import e from "../../assets/img/c5.jpg";
 
-const Bride = () => {
+const Groom = () => {
   return (
     <section className="relative pt-16 pb-32 px-4 mb-8 bg-[#FDF5EB] font-mono mt-5">
       <h1 className='text-center text-3xl  mb-20'>Bridal Collections</h1>
@@ -119,4 +119,4 @@ const Bride = () => {
   );
 };
 
-export default Bride;
+export default Groom;
