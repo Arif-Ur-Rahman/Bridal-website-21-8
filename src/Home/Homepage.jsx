@@ -1,24 +1,27 @@
 import React from 'react';
 import HeroSection from './HeroSection';
 import Reels from './Section/Reels';
-import Footer from './Shared/Footer';
-import Cover from './Section/Cover';
-import Vedios from './Section/Vedios';
+import Bride from './Section/Bride';
 import NavbarNew from './Shared/NavbarNew';
- 
+import ChooseUs from './Section/ChooseUs';
+import FeedbackModal from './Section/Feedback/FeedbackModal';
+import Collection from './Section/Collection';
+import Moments from './Section/Moments';
+import Footer from './Shared/Footer';
+
 
 const Homepage = () => {
     return (
         <div className=''>
-            <NavbarNew></NavbarNew>
-            {/* <Navbar></Navbar> */}
-           
-            <HeroSection></HeroSection>
-            <Reels></Reels>
-            {/* <Collection></Collection> */}
-            <Cover></Cover>
-            <Vedios></Vedios>
-            <Footer></Footer>
+            <NavbarNew />
+            <HeroSection />
+            <ChooseUs />
+            <Collection></Collection>
+            <Reels />
+            <Bride></Bride>
+            <Moments />
+            <FeedbackModal /> {/* Modal will show immediately */}
+            <Footer />
         </div>
     );
 };

@@ -1,6 +1,7 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaUser } from 'react-icons/fa';
+import logo from "../../assets/logo-2.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,19 +22,20 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white hover:text-black'}`}>
-      <div className="container mx-auto px-4 py-2 flex flex-col md:flex-row items-center justify-between">
+    <div className={`fixed top-0 left-0 w-full z-50 transition-colors font-mono duration-300 py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white hover:text-black'}`}>
+      <div className="container mx-auto px-10 py-2 flex flex-col md:flex-row items-center justify-between">
         <div className="flex space-x-4">
-          <button className="bg-zinc-400 px-4 py-1 rounded-none  hover:text-black">COUTURE</button>
-          <button className="bg-zinc-400 px-4 py-1 rounded-none  hover:text-black">DIFFUSE</button>
+          <button className="bg-zinc-400 px-2 lg:px-4 py-1 rounded-none  hover:text-black text-sm lg:text-base ">COUTURE</button>
+          <button className="hover:bg-zinc-400 px-2 lg:px-4 py-1 rounded-none  hover:text-black text-sm lg:text-base">DIFFUSE</button>
         </div>
-        <h1 className="text-3xl font-semibold">{isScrolled ? 'BRIDAL' : 'DIAMOND BRIDAL'}</h1>
+        <h1 className="text-base lg:text-3xl font-semibold">{isScrolled ? <img className='w-8 h-8 lg:w-16 lg:h-16' src=
+        {logo} alt="" /> : 'DIAMOND BRIDAL'}</h1>
         <div className="flex items-center space-x-4">
           <div className="relative">
             <input
               type="text"
               placeholder="Search"
-              className="border-0 focus:border-0 focus:outline-none bg-zinc-400 px-4 py-1 rounded-none placeholder:text-white"
+              className="border-0 focus:border-0 focus:outline-none bg-zinc-400 px-1 lg:px-4 py-1 rounded-none placeholder:text-white placeholder:text-base "
             />
             <FaSearch className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500" />
           </div>
