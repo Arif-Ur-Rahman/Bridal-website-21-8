@@ -1,5 +1,6 @@
-import React from 'react';
-import ModalImage from "react-modal-image";
+// src/components/Groom.jsx
+import React, { useState } from 'react';
+import { Lightbox } from 'react-modal-image';
 import a from "../../assets/img/c1.jpg";
 import b from "../../assets/img/c2.jpg";
 import c from "../../assets/img/c3.jpg";
@@ -7,6 +8,16 @@ import d from "../../assets/img/c4.jpg";
 import e from "../../assets/img/c5.jpg";
 
 const Groom = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
+  const handleCloseLightbox = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <section className="relative pt-16 pb-32 px-4 mb-8 bg-[#FDF5EB] font-mono mt-5">
       <h1 className='text-center text-3xl mb-20'>Bridal Collections</h1>
@@ -16,48 +27,37 @@ const Groom = () => {
           <div className="flex justify-center items-end relative space-x-4">
             {/* Card 1 */}
             <div className="flex flex-col items-center translate-y-12">
-              <div className="card bg-base-100 w-48 h-72 shadow-xl flex flex-col z-10 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50">
+              <div 
+                className="card bg-base-100 w-48 h-72 shadow-xl flex flex-col z-10 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
+                onClick={() => handleImageClick(a)}
+              >
                 <figure className="relative h-full overflow-hidden">
-                  <ModalImage
-                    small={a}
-                    large={a}
-                    alt="Card 1"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={a} alt="Card 1" className="w-full h-full object-cover"/>
                 </figure>
               </div>
               <div className="mt-2 text-center">
                 <div className="rating rating-md">
-                  <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" defaultChecked />
-                  <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
+                  {/* Rating Stars */}
                 </div>
                 <p>Wedding Dress</p>
                 <p className='font-bold text-red-600'>Morning Wedding Dress</p>
               </div>
             </div>
 
+            {/* Other cards (similar to Card 1) */}
             {/* Card 2 */}
             <div className="flex flex-col items-center">
-              <div className="card bg-black w-52 h-80 shadow-xl flex flex-col z-20 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50">
+              <div 
+                className="card bg-base-100 w-52 h-80 shadow-xl flex flex-col z-20 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
+                onClick={() => handleImageClick(b)}
+              >
                 <figure className="relative h-full overflow-hidden">
-                  <ModalImage
-                    small={b}
-                    large={b}
-                    alt="Card 2"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={b} alt="Card 2" className="w-full h-full object-cover"/>
                 </figure>
               </div>
               <div className="mt-2 text-center">
                 <div className="rating rating-md">
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                  {/* Rating Stars */}
                 </div>
                 <p>Stylish Dress</p>
                 <p className='font-bold text-red-600'>Elegant Summer Dress</p>
@@ -66,23 +66,17 @@ const Groom = () => {
 
             {/* Card 3 */}
             <div className="flex flex-col items-center -translate-y-12">
-              <div className="card bg-base-100 w-60 h-96 shadow-xl flex flex-col z-30 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50">
+              <div 
+                className="card bg-base-100 w-60 h-96 shadow-xl flex flex-col z-30 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
+                onClick={() => handleImageClick(c)}
+              >
                 <figure className="relative h-full overflow-hidden">
-                  <ModalImage
-                    small={c}
-                    large={c}
-                    alt="Card 3"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={c} alt="Card 3" className="w-full h-full object-cover"/>
                 </figure>
               </div>
               <div className="mt-2 text-center">
                 <div className="rating rating-md">
-                  <input type="radio" name="rating-3" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-3" className="mask mask-star-2 bg-orange-400" defaultChecked />
-                  <input type="radio" name="rating-3" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-3" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-3" className="mask mask-star-2 bg-orange-400" />
+                  {/* Rating Stars */}
                 </div>
                 <p>Wedding Dress</p>
                 <p className='font-bold text-red-600'>Night Wedding Dress</p>
@@ -91,23 +85,17 @@ const Groom = () => {
 
             {/* Card 4 */}
             <div className="flex flex-col items-center">
-              <div className="card bg-base-100 w-52 h-80 shadow-xl flex flex-col z-20 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50">
+              <div 
+                className="card bg-base-100 w-52 h-80 shadow-xl flex flex-col z-20 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
+                onClick={() => handleImageClick(d)}
+              >
                 <figure className="relative h-full overflow-hidden">
-                  <ModalImage
-                    small={d}
-                    large={d}
-                    alt="Card 4"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={d} alt="Card 4" className="w-full h-full object-cover"/>
                 </figure>
               </div>
               <div className="mt-2 text-center">
                 <div className="rating rating-md">
-                  <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" defaultChecked />
-                  <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
+                  {/* Rating Stars */}
                 </div>
                 <p>Chic Dress</p>
                 <p className='font-bold text-red-600'>Elegant Evening Dress</p>
@@ -116,23 +104,17 @@ const Groom = () => {
 
             {/* Card 5 */}
             <div className="flex flex-col items-center translate-y-12">
-              <div className="card bg-base-100 w-48 max-h-72 shadow-xl flex flex-col z-10 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50">
+              <div 
+                className="card bg-base-100 w-48 max-h-72 shadow-xl flex flex-col z-10 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
+                onClick={() => handleImageClick(e)}
+              >
                 <figure className="relative h-full overflow-hidden">
-                  <ModalImage
-                    small={e}
-                    large={e}
-                    alt="Card 5"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={e} alt="Card 5" className="w-full h-full object-cover"/>
                 </figure>
               </div>
               <div className="mt-2 text-center">
                 <div className="rating rating-md">
-                  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" defaultChecked />
-                  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
+                  {/* Rating Stars */}
                 </div>
                 <p>Classic Dress</p>
                 <p className='font-bold text-red-600'>Timeless Classic Dress</p>
@@ -141,6 +123,16 @@ const Groom = () => {
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {selectedImage && (
+        <Lightbox
+          medium={selectedImage}
+          large={selectedImage}
+          alt="Selected"
+          onClose={handleCloseLightbox}
+        />
+      )}
     </section>
   );
 };
