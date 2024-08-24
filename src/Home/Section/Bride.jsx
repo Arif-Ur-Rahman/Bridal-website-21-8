@@ -24,7 +24,7 @@ const Bride = () => {
       <div className="container mx-auto relative mt-4">
         <div className="relative">
           {/* Card Container */}
-          <div className="flex justify-center items-end relative space-x-4">
+          <div className="lg:flex justify-center items-end relative space-x-4">
             {/* Card 1 */}
             <div className="flex flex-col items-center translate-y-12">
               <div 
@@ -35,7 +35,7 @@ const Bride = () => {
                   <img src={a} alt="Card 1" className="w-full h-full object-cover"/>
                 </figure>
               </div>
-              <div className="mt-2 text-center">
+              <div className="lg:mt-2 mb-14 lg:mb-0 text-center">
                 <div className="rating rating-md">
                   {/* Rating Stars */}
                 </div>
@@ -48,14 +48,14 @@ const Bride = () => {
             {/* Card 2 */}
             <div className="flex flex-col items-center">
               <div 
-                className="card bg-base-100 w-52 h-80 shadow-xl flex flex-col z-20 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
+                className="card bg-base-100 w-52 h-80 mt-6 lg:mt-0 shadow-xl flex flex-col z-20 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
                 onClick={() => handleImageClick(b)}
               >
                 <figure className="relative h-full overflow-hidden">
                   <img src={b} alt="Card 2" className="w-full h-full object-cover"/>
                 </figure>
               </div>
-              <div className="mt-2 text-center">
+              <div className="lg:mt-2 mb-14 lg:mb-0 text-center">
                 <div className="rating rating-md">
                   {/* Rating Stars */}
                 </div>
@@ -67,7 +67,7 @@ const Bride = () => {
             {/* Card 3 */}
             <div className="flex flex-col items-center -translate-y-12">
               <div 
-                className="card bg-base-100 w-60 h-96 shadow-xl flex flex-col z-30 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
+                className="card bg-base-100 w-60 h-96 mt-6 lg:mt-0 shadow-xl flex flex-col z-30 rounded-none transform transition-transform duration-300 hover:scale-110 hover:opacity-50"
                 onClick={() => handleImageClick(c)}
               >
                 <figure className="relative h-full overflow-hidden">

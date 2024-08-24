@@ -74,7 +74,7 @@ const TestimonialsSlider = () => {
     };
 
     return (
-        <div className="">
+        <div className="px-8">
             <Slider {...settings}>
                 {testimonials.map((testimonial, index) => (
                     <div key={testimonial.id} className="p-4 transition-transform duration-500">

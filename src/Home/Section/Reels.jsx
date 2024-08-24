@@ -62,7 +62,7 @@ const Reels = () => {
   };
 
   return (
-    <section className="relative py-16 px-4 bg-[#FDF5EB] font-mono my-5">
+    <section className="relative py-16 px-8 bg-[#FDF5EB] font-mono my-5">
       <h1 className="text-3xl mb-4 text-center">Reels Videos</h1>
       <div className="relative">
         <Slider {...settings}>
@@ -94,7 +94,7 @@ const Reels = () => {
       >
         <button
           onClick={closeModal}
-          className="absolute bottom-4 right-4 text-white text-4xl"
+          className="absolute bottom-4 left-4 text-white text-4xl"
         >
           ×
         </button>

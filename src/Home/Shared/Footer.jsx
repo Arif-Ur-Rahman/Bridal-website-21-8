@@ -10,9 +10,14 @@ const Footer = () => {
           <a href="index.html" className="navbar-brand">
             <h1 className="text-4xl text-yellow-600">DIAMOND BRIDAL</h1>
           </a>
-          <p className="mt-4 text-white/50 text-sm sm:text-base lg:text-base overflow-hidden">
+          <p className="hidden lg:block di mt-4 text-white/50 lg:text-base overflow-hidden">
             Aliquyam sed elitr elitr erat sed diam ipsum eirmod eos lorem nonumy.
             Tempor sea ipsum diam sed clita dolore eos dolores magna erat dolore sed
+            stet justo et dolor.
+          </p>
+          <p className="lg:hidden mt-4 text-white/50 lg:text-base overflow-hidden">
+            Aliquyam sed elitr elitr erat sed diam ipsum <br /> eirmod eos lorem nonumy.
+            Tempor sea ipsum <br /> diam sed clita dolore eos dolores magna erat <br /> dolore sed
             stet justo et dolor.
           </p>
 
@@ -85,14 +90,15 @@ const Footer = () => {
               <div className="flex">
                 <input
                   type="text"
-                  className="flex-grow border-none bg-white/50 px-4 py-5 rounded-l-lg"
+                  className="flex-grow border-none bg-white/50 px-4 py-2 rounded-l-lg text-xs lg:text-base"
                   placeholder="Your Email Address"
                 />
-                <button className="bg-yellow-600 border-0 px-4 py-5 rounded-r-lg text-white hover:bg-yellow-500">
+                <button className="bg-yellow-600 border-0 px-4 py-2 rounded-r-lg text-white hover:bg-yellow-500 text-xs lg:text-base">
                   Sign Up
                 </button>
               </div>
-            </div>
+          </div>
+
           </div>
         </div>
       </div>

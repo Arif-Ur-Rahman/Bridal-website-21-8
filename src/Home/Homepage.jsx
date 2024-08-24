@@ -22,7 +22,7 @@ const Homepage = () => {
             <Collection></Collection>
             <Reels />
             <Bride></Bride>
-            <FeedbackModal /> {/* Modal will show immediately */}
+            <FeedbackModal /> 
             <Groom></Groom>
             <Moments />
             
