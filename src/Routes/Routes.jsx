@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../Home/Home";
 import Homepage from "../Home/Homepage";
+import OffDayManager from "../Admin/Offday";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
             path: '/',
             element:  <Homepage></Homepage>,
       },
+      {
+        path: '/offday',
+        element: <OffDayManager></OffDayManager>,
+      }
      
        
     ]
