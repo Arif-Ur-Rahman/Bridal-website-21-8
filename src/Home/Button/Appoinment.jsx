@@ -1,37 +1,36 @@
-// src/components/AppointmentForm.jsx
 import React, { useRef, useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import ReCAPTCHA from 'react-google-recaptcha';
 import emailjs from 'emailjs-com';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 const AppointmentForm = ({ isOpen, handleCloseModal }) => {
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
   const [recaptchaValue, setRecaptchaValue] = useState(null);
   const [error, setError] = useState("");
   const [offDays, setOffDays] = useState([]);
   const form = useRef();
 
-  // Fetch off days when component mounts
   useEffect(() => {
     fetch('http://localhost:5000/offdays')
       .then(response => response.json())
-      .then(data => setOffDays(data.map(day => day.date)))
+      .then(data => setOffDays(data))
       .catch(err => setError("Failed to fetch off days"));
   }, []);
 
-  // Fetch available slots when selected date changes
   useEffect(() => {
     if (selectedDate) {
-      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(selectedDate)}`)
+      const dateStr = selectedDate.toISOString().split('T')[0];
+      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(dateStr)}`)
         .then(response => response.json())
         .then(data => setAvailableSlots(data.slots))
         .catch(err => setError("Failed to fetch available slots"));
     }
   }, [selectedDate]);
 
-  const handleDateChange = (event) => {
-    const date = event.target.value;
+  const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
@@ -41,14 +40,16 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const name = event.target.name.value;
-    const address = event.target.address.value;
-    const datetime = `${event.target.date.value}T${event.target.time.value}`;
-    const number = event.target.number.value;
-    const email = event.target.email.value;
-
+  
+    const formData = new FormData(form.current);
+    const name = formData.get('name');
+    const address = formData.get('address');
+    const datetime = `${formData.get('date')}T${formData.get('time')}`;
+    const number = formData.get('number');
+    const email = formData.get('email');
+  
     const appointment = { name, address, datetime, number, email, recaptcha: recaptchaValue };
-
+  
     if (!recaptchaValue) {
       Swal.fire({
         title: 'Error!',
@@ -58,15 +59,15 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
       });
       return;
     }
-
+  
     try {
       const response = await fetch(`http://localhost:5000/check-slot?datetime=${encodeURIComponent(datetime)}`);
       const slotAvailable = await response.json();
-
+  
       if (!slotAvailable.available) {
         throw new Error('Selected time slot is not available.');
       }
-
+  
       const responseBook = await fetch("http://localhost:5000/addapp", {
         method: "POST",
         headers: {
@@ -74,39 +75,67 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
         },
         body: JSON.stringify(appointment),
       });
-
+  
       if (!responseBook.ok) {
         throw new Error(`Server responded with status: ${responseBook.status}`);
       }
-
+  
       const data = await responseBook.json();
       if (data.insertedId) {
-        const templateParams = {
+        const userTemplateParams = {
           name: name,
           email: email,
           address: address,
           number: number,
-          date: event.target.date.value,
-          time: event.target.time.value
+          date: formData.get('date'),
+          time: formData.get('time')
         };
 
-        emailjs.send('service_hif5and', 'template_itcg9u7', templateParams, '-rKJeI0iB4ZX-hOPq')
+        const adminTemplateParams = {
+          name: name,
+          email: email,
+          address: address,
+          number: number,
+          date: formData.get('date'),
+          time: formData.get('time'),
+          admin_email: "arifurrahman.it.doc@gmail.com" // Replace with admin's email
+        };
+
+        // Send email to user
+        emailjs.send('service_hif5and', 'template_itcg9u7', userTemplateParams, '-rKJeI0iB4ZX-hOPq')
           .then(() => {
-            Swal.fire({
-              title: 'Success!',
-              text: 'Appointment Successfully Booked and Email Sent',
-              icon: 'success',
-              confirmButtonText: 'Done'
-            });
+            console.log('User email sent successfully.');
           }, (error) => {
+            console.error('Failed to send user email:', error);
             Swal.fire({
               title: 'Error!',
-              text: 'Failed to send confirmation email.',
+              text: 'Failed to send user email.',
               icon: 'error',
               confirmButtonText: 'Okay'
             });
           });
 
+        // Send email to admin
+        emailjs.send('service_hif5and', 'template_admin_id', adminTemplateParams, '-rKJeI0iB4ZX-hOPq')
+          .then(() => {
+            console.log('Admin email sent successfully.');
+          }, (error) => {
+            console.error('Failed to send admin email:', error);
+            Swal.fire({
+              title: 'Error!',
+              text: 'Failed to send admin email.',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+            });
+          });
+  
+        Swal.fire({
+          title: 'Success!',
+          text: 'Appointment Successfully Booked and Emails Sent',
+          icon: 'success',
+          confirmButtonText: 'Done'
+        });
+  
         handleCloseModal();
       }
     } catch (error) {
@@ -118,10 +147,11 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
       });
     }
   };
-
-  // Function to check if a date is an off day
+  
   const isOffDay = (date) => {
-    return offDays.includes(date);
+    const dd = offDays.includes(date.toISOString().split('T')[0]);
+    console.log('hello', dd)
+    return dd
   };
 
   return (
@@ -140,15 +170,13 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
           <div className="flex items-center justify-start mb-2">
             <div className="w-1/2 mr-2">
               <label className="block text-sm font-medium text-gray-700 italic pb-2">Date</label>
-              <input 
-                type="date" 
-                name="date"
-                className="input input-bordered w-full h-10" 
-                min={new Date().toISOString().split('T')[0]} 
+              <DatePicker
+                selected={selectedDate}
                 onChange={handleDateChange}
-                required
-                // Disable off days
-                disabled={isOffDay(selectedDate)}
+                minDate={new Date()}
+                filterDate={(date) => !isOffDay(date)}
+                dateFormat="yyyy-MM-dd"
+                className="input input-bordered w-full h-10"
               />
             </div>
             <div className="w-1/2">
@@ -205,6 +233,8 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
 
           <div className="mb-2">
             <ReCAPTCHA
+             
+
               sitekey="6LdpMyIqAAAAAG_KsOprEaaIAly9e1UOiW_qBhyt"
               onChange={handleRecaptchaChange}
             />
