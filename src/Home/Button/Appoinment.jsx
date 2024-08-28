@@ -47,8 +47,9 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
     const datetime = `${formData.get('date')}T${formData.get('time')}`;
     const number = formData.get('number');
     const email = formData.get('email');
+    const nop = formData.get('nop');
   
-    const appointment = { name, address, datetime, number, email, recaptcha: recaptchaValue };
+    const appointment = { name, address, datetime, number, email, nop, recaptcha: recaptchaValue };
   
     if (!recaptchaValue) {
       Swal.fire({
@@ -231,7 +232,16 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
             </div>
           </div>
 
-          <div className="mb-2">
+          <div className="flex items-center justify-start mb-2">
+          <div className="w-1/2 mr-2">
+              <label className="block text-sm font-medium text-gray-700 italic pb-2">Number of person </label>
+              <input 
+                type="text" 
+                name="nop"
+                className="input input-bordered w-full h-10" 
+                required 
+              />
+            </div>
             <ReCAPTCHA
              
 

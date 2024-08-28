@@ -4,11 +4,12 @@ import Homepage from "../Home/Homepage";
 import OffDayManager from "../Admin/Offday";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
-import A from "../Pages/Admin/Homepage/A";
+// import A from "../Pages/Admin/Homepage/A";
 import E from "../Pages/Employee/Homepage/E";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
-import AdminRoute from "./AdminRoute";
+// import AdminRoute from "./AdminRoute";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,9 +39,9 @@ const router = createBrowserRouter([
           {
             path: 'apage', // Removed leading slash
             element: (
-              <AdminRoute>
-                <A></A>
-              </AdminRoute>
+              <PrivateRoute>
+                <OffDayManager></OffDayManager>
+                </PrivateRoute>
             ),
           },
           // User or Employee's Path

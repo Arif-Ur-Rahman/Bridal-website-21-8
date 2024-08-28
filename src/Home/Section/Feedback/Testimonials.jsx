@@ -78,8 +78,8 @@ const TestimonialsSlider = () => {
             <Slider {...settings}>
                 {testimonials.map((testimonial, index) => (
                     <div key={testimonial.id} className="p-4 transition-transform duration-500">
-                        <div className={`p-4 w-96 rounded-none ${currentSlide === index ? 'bg-[#EDB354] text-white' : 'bg-white bg-black'}`}>
-                            <div className="relative ml-6">
+                        <div className={`container mx-auto w-96 h-[250px] p-8 rounded-none ${currentSlide === index ? 'bg-[#EDB354] text-white' : 'bg-white bg-black'}`}>
+                            <div className="relative ml-6 ">
                               <div className="flex items-center">
                               <img 
                                     className="w-16 h-16 rounded-full border-1 border-white absolute top-[-5px]"
@@ -93,7 +93,7 @@ const TestimonialsSlider = () => {
                               </div>
                                 <div className="mt-8">
                                     
-                                    <p className="mt-2 text-gray-500">{testimonial.feedback}</p>
+                                    <p className="mt-2 text-gray-500 ">{testimonial.feedback}</p>
                                 </div>
                             </div>
                         </div>

@@ -1,126 +1,107 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2'
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../Providers/AuthProvider"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
 
-const Register = () => {
-  const { createUser } = useContext(AuthContext);
 
-  const handleRegister = (e) => {
-    e.preventDefault();  
-
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    console.log(name, photo, email, password);
-
-    if(password.length < 6){
-        toast('The password is less than 6 characters');
-    }
-    else if(!/[A-Z]/.test(password)){
-        toast('Do not have a capital letter');
-    }
-    else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)){
-        toast('Do not have a special character');
-    }
-
-   else{
-     // Check if createUser is a valid function
+const RegAdmin = () => {
+    const { createUser } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const axiosPublic = useAxiosPublic();
     
-      // Create user in Firebase
-      createUser(name, photo, email, password)
-        .then((result) => {
-          console.log("User registered:", result.user);
-          toast('Successful Registration');
+    const navigate = useNavigate();
 
-      
-        })
-        .catch((error) => {
-          console.error("Registration error:", error);
-          toast('Registration error');
-        });
-    
-   }
-  };
+    const onSubmit = async (data) => {
+        console.log(data);
 
-  return (
-    <div className="">
-      <div className="">
-        <div className="flex flex-col items-center justify-center space-y-10">
-          <div className="mt-10">
-            <h1 className="text-2xl md:text-5xl font-bold">Register now!</h1>
-          </div>
-          <div className="w-1/2 bg-[#32cc8c] p-4 rounded-lg">
-            <form onSubmit={handleRegister} className="card-body">
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Name</span>
-                    </label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        placeholder="Enter your Name" 
-                        className="input input-bordered" required 
-                    />
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Photo URL</span>
-                    </label>
-                    <input type="url" 
-                    name="photo" 
-                    placeholder="Enter Photo Url" 
-                    className="input input-bordered" required 
-                    />
-                </div>
+        try {
+            const res = await createUser(data.name,data.photo, data.email, data.password);
+            const loggedUser = res.user;
+            console.log(loggedUser);
+            const userInfo = {
+                name: data.name,
+		            photo: data.photo,
+                email: data.email,
+		            password: data.password
                  
-              <div className="form-control">
-                    <label className="label">
-                    <span className="label-text">Email</span>
-                    </label>
-                    <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="input input-bordered"
-                    required
-                    />
+
+            };
+
+            const userRes = await axiosPublic.post('/user', userInfo);
+
+            if (userRes.data.insertedId) {
+                reset();
+                Swal.fire({
+                    title: "Created",
+                    text: `User created successfully`,
+                    icon: "success"
+                });
+                navigate('/login');
+            }
+ 
+        } catch (error) {
+            console.error(error);
+            // Handle error, show toast, etc.
+        }
+    };
+
+   return (
+        <div>
+            <div className="flex justify-center mt-20">
+                <div className="hero-content flex-col lg:flex-row">
+                    
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Full Name</span>
+                                </label>
+                                <input type="name" {...register("name", { required: true })} name='name' placeholder="name" className="input input-bordered" required />
+                                {errors.name && <span>This field is required</span>}
+                            </div>
+                            
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">logo Url</span>
+                                </label>
+                                <input type="text" {...register("logo", { required: true })} name='logo' placeholder="logo url" className="input input-bordered" required />
+                                {errors.logo && <span>This field is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" {...register("email", { required: true })} name='email' placeholder="email" className="input input-bordered" required />
+                                {errors.email && <span className="text-red-600">This field is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input type="password" {...register("password", { required: true, minLength: 6, maxLength: 20, pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]/
+ })} name='password' placeholder="password" className="input input-bordered" required />
+                                {errors.password?.type === 'required' && <span>This field is required</span>}
+                                {errors.password?.type === 'minLength' && <span className="text-red-600">Password must be 6 characters</span>}
+                                {errors.password?.type === 'maxLength' && <span className="text-red-600">Password must be less than 20 characters</span>}
+                                {errors.password?.type === 'pattern' && <span className="text-red-600">Password must have one uppercase, lowercase, special character, and number</span>}
+                            </div>
+                         
+
+
+                            <div className="form-control mt-6">
+                                <button type="submit" className="btn bg-[#7E2553] text-white hover:bg-[#7E2553] ">Sign Up</button>
+                            </div>
+                        </form>
+                        <p className="text-center my-4">Already have an Account?<Link to='/login'>Login</Link></p>
+                        {/* <SocialLogin></SocialLogin> */}
+                    </div>
                 </div>
-                <div className="form-control">
-                    <label className="label">
-                    <span className="label-text">Password</span>
-                    </label>
-                    <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    className="input input-bordered"
-                    required
-                    />
-                    <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                        Forgot password?
-                    </a>
-                    </label>
-                </div>
-                <div className="form-control mt-6">
-                    <button className="btn bg-[#146542] hover:bg-green-600 border-0  md:w-1/2 mx-auto text-white">Register</button>
-                </div>
-            </form>
-            <p className="text-center text-xs md:text-base">
-              Already have an Account? Please{" "}
-              <Link to="/login">
-                <button className="btn btn-link text-[#146542]">Login</button>
-              </Link>
-            </p>
-          </div>
+            </div>
+            
         </div>
-      </div>
-      <ToastContainer /> 
-    </div>
-  );
+    );
 };
 
-export default Register;
+export default RegAdmin;

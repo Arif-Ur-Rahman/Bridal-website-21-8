@@ -85,10 +85,10 @@ const Navbar = () => {
         </div>
       </div>
       <AppointmentForm isOpen={isModalOpen} handleCloseModal={handleCloseModal} />
-      <div>
+      <div className='text-center'>
         {!isScrolled && (
           <div className="py-2">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 ">
               <nav className="flex space-x-4 text-xs lg:text-lg lg:space-x-10 items-center justify-center">
                 <a href="/" className="hover:text-black">Home</a>
                 <a href="/offday" className="hover:text-black">About</a>

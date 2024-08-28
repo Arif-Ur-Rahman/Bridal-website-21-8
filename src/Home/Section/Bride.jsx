@@ -22,9 +22,10 @@ const Bride = () => {
     <section className="relative pt-16 pb-32 px-4 mb-8 bg-[#FDF5EB] font-mono mt-5">
       <h1 className='text-center text-3xl mb-20'>Bridal Collections</h1>
       <div className="container mx-auto relative mt-4">
-        <div className="relative">
+        <div className="relative ">
           {/* Card Container */}
-          <div className="lg:flex justify-center items-end relative space-x-4">
+         <div className="container mx-auto">
+         <div className="lg:flex justify-center items-end relative space-x-4 ">
             {/* Card 1 */}
             <div className="flex flex-col items-center translate-y-12">
               <div 
@@ -121,6 +122,7 @@ const Bride = () => {
               </div>
             </div>
           </div>
+         </div>
         </div>
       </div>
 

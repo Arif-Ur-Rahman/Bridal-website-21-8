@@ -5,9 +5,11 @@ import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const useAdmin = () => {
-    const {user, loading} = useContext(AuthContext);
+    // const {user, loading} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
-    const {data: isAdmin, isPending, isLoading} = useQuery({
+    // const {data: isAdmin, isPending, isLoading} = useQuery({
+    const {data: isAdmin, isPending} = useQuery({
         queryKey: [user?.email, 'isAdmin'],
         enabled: !!user?.email && !!localStorage.getItem('access-token'),
         queryFn: async()=>{
@@ -16,7 +18,8 @@ const useAdmin = () => {
             return res.data?.admin;
         }
     })
-    return [isAdmin, isLoading]
+    // return [isAdmin, isLoading]
+    return [isAdmin]
 };
 
 export default useAdmin;

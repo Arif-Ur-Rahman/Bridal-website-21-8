@@ -3,6 +3,7 @@
 // import PenReq from "./PenReq";
 // import TopMostReq from "./TopMostReq";
 
+import OffDayManager from "../../../Admin/Offday";
 import A from "./A";
 
 const AdminHome = () => {
@@ -14,7 +15,7 @@ const AdminHome = () => {
             {/* <PenReq></PenReq>
             <TopMostReq></TopMostReq>
             <LimitStock></LimitStock> */}
-            <A></A>
+            <OffDayManager></OffDayManager>
             
         </div>
     );

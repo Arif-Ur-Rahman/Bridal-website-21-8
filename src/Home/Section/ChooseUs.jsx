@@ -11,12 +11,12 @@ import { faHeadset, faTag, faTools } from '@fortawesome/free-solid-svg-icons';
 const ChooseUs = () => {
   return (
     <section className='bg-[#FDF5EB] font-mono my-5'>
-      <div className="container-fluid bg-light py-5 mb-5">
+      <div className="container-fluid bg-light py-5 mb-5 mx-auto">
         <div className="text-center mx-auto mb-5 max-w-lg">
           <p className="text-[#EDB354] uppercase mb-2 pt-6">Why Choose Us!</p>
           <h1 className="text-3xl mb-4">Why People Choose Us!</h1>
         </div>
-        <div className="container py-5">
+        <div className="container py-5 mx-auto">
           <div className="mx-8 lg:flex lg:justify-center gap-10 lg:items-start">
             <div className="w-full lg:w-1/2 px-8 relative">
               <div className="flex items-center justify-center">

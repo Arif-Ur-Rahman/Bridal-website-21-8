@@ -69,7 +69,7 @@ const Reels = () => {
           {reelsData.map((reel) => (
             <div
               key={reel.id}
-              className="relative w-full h-80 bg-white shadow-lg rounded-none overflow-hidden flex-shrink-0"
+              className="relative w-full h-full bg-white shadow-lg rounded-none overflow-hidden flex-shrink-0"
             >
               <video
                 src={reel.videoUrl}

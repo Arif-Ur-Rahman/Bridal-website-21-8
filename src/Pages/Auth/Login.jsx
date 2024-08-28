@@ -1,92 +1,129 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Providers/AuthProvider";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from '../../Providers/AuthProvider';
+import SocialLogin from './SocialLogin';
+import axios from 'axios'; // Import axios for API requests
 
 const Login = () => {
-  const { signInUser, signInWithGoogle } = useContext(AuthContext);
-  const navigate = useNavigate();
+    const { signInUser } = useContext(AuthContext);
+    const [disable, setDisable] = useState(true);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/dashboard/epage";
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    console.log(email, password);
+    // useEffect(() => {
+    //     loadCaptchaEnginge(6);
+    // }, []);
 
-    signInUser(email, password)
-      .then(result => {
-        console.log(result.user);
-        e.target.reset();
-        navigate('/');
-        toast.success('Successful Login');
-      })
-      .catch(error => {
-        console.error(error);
-        toast.error('Login error');  
-      });
-  };
-
-    const handleGoogle =()=>{
-         signInWithGoogle()
-         .then(result=>{console.log(result.user)})
-         .catch((error)=> {
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.email.value;
+      const password = form.password.value;
+  
+      try {
+          // Auth authenticate
+          const result = await signInUser(email, password);
+          const user = result.user;
+  
+          // Fetch JWT token
+          const tokenResponse = await axios.post('http://localhost:5000/jwt', { email });
+          const token = tokenResponse.data.token;
+  
+          // Fetch user role using the token
+          const response = await axios.get(`http://localhost:5000/user/admin/${email}`, {
+              headers: {
+                  Authorization: `Bearer ${token}`
+              }
+          });
+          const userRole = response.data.admin ? 'admin' : 'user';
+  
+          Swal.fire({
+              title: "LOGIN SUCCESSFULLY",
+              showClass: {
+                  popup: `
+                      animate__animated
+                      animate__fadeInUp
+                      animate__faster
+                  `
+              },
+              hideClass: {
+                  popup: `
+                      animate__animated
+                      animate__fadeOutDown
+                      animate__faster
+                  `
+              }
+          });
+  
+          // Redirect based on user role
+          if (userRole === 'admin') {
+              navigate("/dashboard/apage", { replace: true });
+          } else {
+              navigate(from, { replace: true });
+          }
+      } catch (error) {
           console.error(error);
-         toast('Login error');
-        });
-    }
-  
-    return (
-      <div className="">
-        <div className="">
-          <div className="flex flex-col items-center justify-center space-y-10">
-            <div className="mt-10">
-              <h1 className="text-5xl font-bold">Login now!</h1>
-            </div>
-            <div className="w-1/2  bg-[#32cc8c]	p-4 rounded-lg">
-              <form onSubmit={handleLogin} className="card-body">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="email"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    className="input input-bordered"
-                    required
-                  />
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
-                  </label>
-                </div>
-                <div className="form-control mt-6">
-                  <button className="btn bg-[#146542] hover:bg-green-600 border-0 w-1/2 mx-auto text-white" >Login</button>
-                </div>
-              </form>
-              <p className="text-center ">New Here?  Please <Link to='/register'><button className="btn btn-link text-[#146542]">Register</button></Link></p>
-              <p className="text-center"> <button onClick={handleGoogle} className="btn btn-ghost text-sm normal-case md:text-base"> Sign In with Google</button></p>
-            </div>
-          </div>
-        </div>
-        <ToastContainer /> 
-      </div>
-    );
+          Swal.fire({
+              title: "Login Failed",
+              text: error.message,
+              icon: 'error',
+              confirmButtonText: 'OK'
+          });
+      }
   };
   
-  export default Login;
-  
+
+    // const handleValidedCapcha = (e) => {
+    //     const user_captcha_value = e.target.value;
+    //     if (validateCaptcha(user_captcha_value)) {
+    //         setDisable(false);
+    //     } else {
+    //         setDisable(true);
+    //     }
+    //     console.log(user_captcha_value);
+    // };
+
+    return (
+        <div>
+            <div className="flex justify-center mt-20">
+                <div className="hero-content flex-col lg:flex-row">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <form onSubmit={handleLogin} className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                            </div>
+                            {/* <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Captcha</span>
+                                </label>
+                                <LoadCanvasTemplate />
+                                <input type="text" onBlur={handleValidedCapcha} name="captcha" placeholder="type the above" className="input input-bordered" />
+                            </div> */}
+                            {/* <div className="form-control mt-6">
+                                <button disabled={disable} className="btn bg-[#7E2553] text-white hover:bg-[#7E2553]">Login</button>
+                            </div> */}
+                            <div className="form-control mt-6">
+                                <button   className="btn bg-[#7E2553] text-white hover:bg-[#7E2553]">Login</button>
+                            </div>
+                        </form>
+                        <SocialLogin />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
