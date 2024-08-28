@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTwitter, FaFacebookF, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaAngleRight } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -9,27 +10,32 @@ const Footer = () => {
           <a href="index.html" className="navbar-brand">
             <h1 className="text-4xl text-yellow-600">DIAMOND BRIDAL</h1>
           </a>
-          <p className="mt-4 text-white/50 text-sm sm:text-base lg:text-base overflow-hidden">
-  Aliquyam sed elitr elitr erat sed diam ipsum eirmod eos lorem nonumy.
-  Tempor sea ipsum diam sed clita dolore eos dolores magna erat dolore sed
-  stet justo et dolor.
-</p>
+          <p className="hidden lg:block di mt-4 text-white/50 lg:text-base overflow-hidden">
+            Aliquyam sed elitr elitr erat sed diam ipsum eirmod eos lorem nonumy.
+            Tempor sea ipsum diam sed clita dolore eos dolores magna erat dolore sed
+            stet justo et dolor.
+          </p>
+          <p className="lg:hidden mt-4 text-white/50 lg:text-base overflow-hidden">
+            Aliquyam sed elitr elitr erat sed diam ipsum <br /> eirmod eos lorem nonumy.
+            Tempor sea ipsum <br /> diam sed clita dolore eos dolores magna erat <br /> dolore sed
+            stet justo et dolor.
+          </p>
 
-          <p className="mt-2 text-white/50"><i className="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
-          <p className='text-white/50'><i className="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
-          <p className='text-white/50'><i className="fa fa-envelope mr-2"></i>info@example.com</p>
+          <p className="mt-2 text-white/50"><FaMapMarkerAlt className="inline-block mr-2" />123 Street, New York, USA</p>
+          <p className='text-white/50'><FaPhoneAlt className="inline-block mr-2" />+012 345 67890</p>
+          <p className='text-white/50'><FaEnvelope className="inline-block mr-2" />info@example.com</p>
           <div className="flex justify-start mt-4">
             <a className="btn btn-square border bg-black border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-black rounded-full mr-2" href="#">
-              <i className="fab fa-twitter"></i>
+              <FaTwitter />
             </a>
             <a className="btn btn-square border bg-black border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-black rounded-full mr-2" href="#">
-              <i className="fab fa-facebook-f"></i>
+              <FaFacebookF />
             </a>
             <a className="btn btn-square border bg-black border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-black rounded-full mr-2" href="#">
-              <i className="fab fa-linkedin-in"></i>
+              <FaLinkedinIn />
             </a>
             <a className="btn btn-square border bg-black border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-black rounded-full mr-2" href="#">
-              <i className="fab fa-instagram"></i>
+              <FaInstagram />
             </a>
           </div>
         </div>
@@ -44,63 +50,62 @@ const Footer = () => {
               <div className="absolute top-0 left-[-40px] h-full w-[80px]"></div>
               <h4 className="font-medium text-2xl mb-4">Quick Links</h4>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>About Us
+                <FaAngleRight className="inline-block mr-2" />About Us
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Contact Us
+                <FaAngleRight className="inline-block mr-2" />Contact Us
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Our Services
+                <FaAngleRight className="inline-block mr-2" />Our Services
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Terms & Condition
+                <FaAngleRight className="inline-block mr-2" />Terms & Condition
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Support
+                <FaAngleRight className="inline-block mr-2" />Support
               </a>
             </div>
             <div className="col-sm-6">
               <h4 className="font-medium text-2xl mb-4">Popular Links</h4>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>About Us
+                <FaAngleRight className="inline-block mr-2" />About Us
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Contact Us
+                <FaAngleRight className="inline-block mr-2" />Contact Us
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Our Services
+                <FaAngleRight className="inline-block mr-2" />Our Services
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Terms & Condition
+                <FaAngleRight className="inline-block mr-2" />Terms & Condition
               </a>
               <a className="block mb-2 text-left text-white/50 hover:text-yellow-600 transition duration-300" href="#">
-                <i className="fas fa-angle-right mr-2"></i>Support
+                <FaAngleRight className="inline-block mr-2" />Support
               </a>
             </div>
-            
           </div>
           <div className="col-sm-12">
-            <h4 className=" mb-4 font-medium text-2xl">Newsletter</h4>
-            <div className="w-1/2 lg:w-full">
-                <div className="flex">
+            <h4 className="mb-4 font-medium text-2xl">Newsletter</h4>
+            <div className="w-1/2 ">
+              <div className="flex">
                 <input
-                    type="text"
-                    className="flex-grow border-none bg-white/50 px-4 py-5 rounded-l-lg"
-                    placeholder="Your Email Address"
+                  type="text"
+                  className="flex-grow border-none bg-white/50 px-4 py-2 rounded-l-lg text-xs lg:text-base"
+                  placeholder="Your Email Address"
                 />
-                <button className="bg-yellow-600 border-0 px-4 py-5 rounded-r-lg text-white hover:bg-yellow-500">
-                    Sign Up
+                <button className="bg-yellow-600 border-0 px-4 py-2 rounded-r-lg text-white hover:bg-yellow-500 text-xs lg:text-base">
+                  Sign Up
                 </button>
-            </div>
-  </div>
-</div>
+              </div>
+          </div>
 
+          </div>
         </div>
       </div>
       <div className="hidden lg:block h-px bg-white/50 w-auto mx-5"></div>
       <div className="flex items-center justify-between ml-10 mt-4">
         <div className="">
-        <h3>© DIAMOND BRIDAL. All Rights Reserved.</h3>
+          <h3>© DIAMOND BRIDAL. All Rights Reserved.</h3>
         </div>
         {/* <div className="bg-yellow-600">
             <h3>Designed by Dream Diver</h3>

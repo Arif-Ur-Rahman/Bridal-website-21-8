@@ -62,14 +62,14 @@ const Reels = () => {
   };
 
   return (
-    <section className="relative py-16 px-4 bg-[#FDF5EB] font-mono my-5">
-      <h1 className="text-3xl font-bold mb-4 text-center">Reels Videos</h1>
+    <section className="relative py-16 px-8 bg-[#FDF5EB] font-mono my-5">
+      <h1 className="text-3xl mb-4 text-center">Reels Videos</h1>
       <div className="relative">
         <Slider {...settings}>
           {reelsData.map((reel) => (
             <div
               key={reel.id}
-              className="relative w-full h-80 bg-white shadow-lg rounded-none overflow-hidden flex-shrink-0"
+              className="relative w-full h-full bg-white shadow-lg rounded-none overflow-hidden flex-shrink-0"
             >
               <video
                 src={reel.videoUrl}
@@ -89,12 +89,12 @@ const Reels = () => {
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Video Lightbox"
-        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80"
+        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 "
         overlayClassName="fixed inset-0"
       >
         <button
           onClick={closeModal}
-          className="absolute top-4 right-4 text-white text-4xl"
+          className="absolute bottom-4 left-4 text-white text-4xl"
         >
           ×
         </button>
@@ -102,7 +102,7 @@ const Reels = () => {
           controls
           autoPlay
           src={currentVideo}
-          className="w-full max-w-4xl"
+          className="w-1/2 max-w-lg h-1/2"
         >
           Your browser does not support the video tag.
         </video>

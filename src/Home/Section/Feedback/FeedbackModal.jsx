@@ -16,7 +16,7 @@ const FeedbackSection = () => {
         <section className="bg-[#FDF5EB] font-mono mt-6">
             <div className="px-0 py-5">
                 <div className="text-center mx-auto" style={{ maxWidth: '500px' }}>
-                    <h1 className="text-4xl font-bold mt-6 mb-0">Customers Feedback</h1>
+                    <h1 className="text-3xl mt-6 mb-0">Customers Feedback</h1>
                     <br />
                     <button 
                         onClick={handleModalOpen} 
