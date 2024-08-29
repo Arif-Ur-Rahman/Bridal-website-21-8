@@ -8,6 +8,8 @@ import Register from "../Pages/Auth/Register";
 import E from "../Pages/Employee/Homepage/E";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import OffDayDetails from "../Admin/offDayDetails";
+import CalendarComponent from "../Admin/CalenderComponent";
 // import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
                 <OffDayManager></OffDayManager>
                 </PrivateRoute>
             ),
+          },
+          {
+            path: 'details/:date',
+            element: <OffDayDetails></OffDayDetails>
+          },
+          {
+            path: 'd',
+            element: <CalendarComponent></CalendarComponent>,
           },
           // User or Employee's Path
           {

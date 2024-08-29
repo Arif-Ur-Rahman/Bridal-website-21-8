@@ -1,95 +1,235 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import ReCAPTCHA from 'react-google-recaptcha';
-import emailjs from '@emailjs/browser';
+import emailjs from 'emailjs-com';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
-const AppointmentForm = ({  handleOpenModal, handleCloseModal }) => {
+const AppointmentForm = ({ isOpen, handleCloseModal }) => {
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
   const [recaptchaValue, setRecaptchaValue] = useState(null);
   const [error, setError] = useState("");
+  const [offDays, setOffDays] = useState([]);
   const form = useRef();
 
+  // Fetch off days when component mounts
+  useEffect(() => {
+    fetch('http://localhost:5000/offdays')
+      .then(response => response.json())
+      .then(data => setOffDays(data))
+      .catch(err => setError("Failed to fetch off days"));
+  }, []);
+
+  // Fetch available slots when selected date changes
   useEffect(() => {
     if (selectedDate) {
-      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(selectedDate)}`)
+      const dateStr = selectedDate.toISOString().split('T')[0];
+      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(dateStr)}`)
         .then(response => response.json())
         .then(data => setAvailableSlots(data.slots))
         .catch(err => setError("Failed to fetch available slots"));
     }
   }, [selectedDate]);
 
-  const handleDateChange = (event) => setSelectedDate(event.target.value);
-  const handleRecaptchaChange = (value) => setRecaptchaValue(value);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (!recaptchaValue) {
-      Swal.fire('Error', 'Please complete the reCAPTCHA', 'error');
-      return;
-    }
-
-    const formData = new FormData(form.current);
-    fetch('http://localhost:5000/app', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          Swal.fire('Success', 'Appointment scheduled successfully', 'success');
-          emailjs.sendForm('service_id', 'template_id', form.current, 'user_id')
-            .then(result => console.log(result.text), error => console.log(error.text));
-          handleCloseModal();
-        } else {
-          Swal.fire('Error', 'Failed to schedule appointment', 'error');
-        }
-      })
-      .catch(err => Swal.fire('Error', 'Failed to schedule appointment', 'error'));
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
   };
 
-  if (!isModalOpen) return null;
+  const handleRecaptchaChange = (value) => {
+    setRecaptchaValue(value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    // Access form values via form ref
+    const formData = new FormData(form.current);
+    const name = formData.get('name');
+    const address = formData.get('address');
+    const datetime = `${formData.get('date')}T${formData.get('time')}`;
+    const number = formData.get('number');
+    const email = formData.get('email');
+  
+    const appointment = { name, address, datetime, number, email, recaptcha: recaptchaValue };
+  
+    if (!recaptchaValue) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please complete the reCAPTCHA',
+        icon: 'error',
+        confirmButtonText: 'Okay'
+      });
+      return;
+    }
+  
+    try {
+      const responseCheckSlot = await fetch(`http://localhost:5000/check-slot?datetime=${encodeURIComponent(datetime)}`);
+      const slotAvailable = await responseCheckSlot.json();
+  
+      if (!slotAvailable.available) {
+        throw new Error('Selected time slot is not available.');
+      }
+  
+      const responseBook = await fetch("http://localhost:5000/addapp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(appointment),
+      });
+  
+      if (!responseBook.ok) {
+        throw new Error(`Server responded with status: ${responseBook.status}`);
+      }
+  
+      const data = await responseBook.json();
+      if (data.insertedId) {
+        const templateParams = {
+          name: name,
+          email: email,
+          address: address,
+          number: number,
+          date: formData.get('date'),
+          time: formData.get('time')
+        };
+  
+        emailjs.send('service_hif5and', 'template_itcg9u7', templateParams, '-rKJeI0iB4ZX-hOPq')
+          .then(() => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Appointment Successfully Booked and Email Sent',
+              icon: 'success',
+              confirmButtonText: 'Done'
+            });
+          }, () => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'Failed to send confirmation email.',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+            });
+          });
+  
+        handleCloseModal();
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: error.message || 'Failed to book appointment. Please try again.',
+        icon: 'error',
+        confirmButtonText: 'Okay'
+      });
+    }
+  };
+
+  // Function to check if a date is an off day
+  const isOffDay = (date) => {
+    return offDays.includes(date.toISOString().split('T')[0]);
+  };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="modal bg-white p-6 rounded-lg">
-        <h2 className="text-2xl font-bold mb-4">Schedule an Appointment</h2>
+    <dialog id="my_modal_3" className="modal" open={isOpen}>
+      <div className="modal-box">
         <form ref={form} onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Name:</label>
-            <input className="input" type="text" name="name" required />
+          <button 
+            type="button" 
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" 
+            onClick={handleCloseModal}
+          >
+            ✕
+          </button>
+          <h3 className="font-light text-3xl italic text-center">Appointment Form</h3>
+
+          <div className="flex items-center justify-start mb-2">
+            <div className="w-1/2 mr-2">
+              <label className="block text-sm font-medium text-gray-700 italic pb-2">Date</label>
+              <DatePicker
+                selected={selectedDate}
+                onChange={handleDateChange}
+                minDate={new Date()}
+                filterDate={(date) => !isOffDay(date)}
+                dateFormat="yyyy-MM-dd"
+                className="input input-bordered w-full h-10"
+              />
+            </div>
+            <div className="w-1/2">
+              <label className="block text-sm font-medium text-gray-700 italic pb-2">Time</label>
+              <select name="time" className="select select-bordered w-full" required>
+                {availableSlots.map((slot) => (
+                  <option key={slot} value={slot}>{slot}</option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Phone:</label>
-            <input className="input" type="tel" name="phone" required />
+
+          <div className="flex items-center justify-start mb-2">
+            <div className="w-1/2 mr-2">
+              <label className="block text-sm font-medium text-gray-700 italic pb-2">Name</label>
+              <input 
+                type="text" 
+                name="name"
+                className="input input-bordered w-full h-10" 
+                required 
+              />
+            </div>
+            <div className="w-1/2">
+              <label className="block text-sm font-medium text-gray-700 italic pb-2">Phone Number</label>
+              <input 
+                type="tel" 
+                name="number"
+                className="input input-bordered w-full h-10" 
+                required 
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Email:</label>
-            <input className="input" type="email" name="email" required />
+
+          <div className="flex items-center justify-start mb-2">
+            <div className="w-1/2 mr-2">
+              <label className="block text-sm font-medium text-gray-700 italic pb-2">Email</label>
+              <input 
+                type="email" 
+                name="email"
+                className="input input-bordered w-full h-10" 
+                required 
+              />
+            </div>
+            <div className="w-1/2">
+              <label className="block text-sm font-medium text-gray-700 italic pb-2">Address</label>
+              <input 
+                type="text" 
+                name="address"
+                className="input input-bordered w-full h-10" 
+                required 
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Date:</label>
-            <input className="input" type="date" name="date" onChange={handleDateChange} required />
+
+          <div className="mb-2">
+            <ReCAPTCHA
+              sitekey="6LdpMyIqAAAAAG_KsOprEaaIAly9e1UOiW_qBhyt"
+              onChange={handleRecaptchaChange}
+            />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-semibold mb-2">Time:</label>
-            <select className="input" name="time" required>
-              {availableSlots.map(slot => (
-                <option key={slot} value={slot}>{slot}</option>
-              ))}
-            </select>
-          </div>
-          <div className="mb-4">
-            <ReCAPTCHA sitekey="YOUR_RECAPTCHA_SITE_KEY" onChange={handleRecaptchaChange} />
-          </div>
-          <div className="flex justify-end mt-6">
-            <button type="button" className="btn" onClick={handleCloseModal}>Close</button>
-            <button type="submit" className="btn">Submit</button>
+
+          <div className="flex justify-end">
+            <button 
+              type="button" 
+              className="btn bg-red-900 text-white hover:bg-red-700 mr-2" 
+              onClick={handleCloseModal}
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              className="btn bg-green-900 text-white hover:bg-green-700"
+            >
+              Confirm
+            </button>
           </div>
         </form>
       </div>
-    </div>
+    </dialog>
   );
 };
 

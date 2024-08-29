@@ -22,6 +22,8 @@ const Navbar = () => {
       });
   };
 
+
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -50,6 +52,8 @@ const Navbar = () => {
           {isScrolled ? <img className='w-8 h-8 lg:w-16 lg:h-16' src={logo} alt="Logo" /> : 'DIAMOND BRIDAL'}
         </h1>
         <div className="flex items-center space-x-2 lg:space-x-4">
+          
+           {/* Appointment Button here */}
           <div className="">
             <button 
               className="btn p-5 bg-yellow-600 border-none text-white font-semibold rounded-none hover:bg-green-700 transition duration-300"
@@ -71,7 +75,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      <AppointmentForm  handleOpenModal={ handleOpenModal} handleCloseModal={handleCloseModal} />
+      <AppointmentForm isOpen={isModalOpen} handleCloseModal={handleCloseModal} />
       <div className='text-center'>
         {!isScrolled && (
           <div className="py-2">
