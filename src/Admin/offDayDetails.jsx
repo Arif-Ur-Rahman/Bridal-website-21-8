@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const OffDayDetails = () => {
   const { date } = useParams(); // 'date' is a string in 'YYYY-MM-DD' format
-  const [details, setDetails] = useState(null);
+  const [details, setDetails] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -17,7 +17,8 @@ const OffDayDetails = () => {
         const formattedDate = offsetDate.toISOString().split('T')[0]; // Adjusted to local time zone
         console.log('Requesting date:', formattedDate); // Debugging line
 
-        const response = await axios.get(`http://localhost:5000/offdays/${formattedDate}`);
+        const response = await axios.get(`http://localhost:5000/app/${formattedDate}`);
+        consloe.log("........", response)
         setDetails(response.data);
       } catch (err) {
         console.error('Error fetching details:', err);
@@ -30,17 +31,21 @@ const OffDayDetails = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Off Day Details</h1>
+      <h1 className="text-xl font-bold mb-4">Details for {date}</h1>
       {error ? (
         <p>{error}</p>
-      ) : details ? (
-        <div className="bg-white p-4 rounded-lg shadow-md">
-          <p><strong>Date:</strong> {new Date(details.date).toDateString()}</p>
-          {/* Display other details if available */}
-          {/* <p><strong>Details:</strong> {details.details}</p> */}
-        </div>
+      ) : details.length > 0 ? (
+        details.map((detail) => (
+          <div key={detail._id} className="bg-white p-4 rounded-lg shadow-md mb-4">
+            <p><strong>Date:</strong> {new Date(detail.datetime).toDateString()}</p>
+            <p><strong>Name:</strong> {detail.name}</p>
+            <p><strong>Address:</strong> {detail.address}</p>
+            <p><strong>Email:</strong> {detail.email}</p>
+            <p><strong>Number:</strong> {detail.number}</p>
+          </div>
+        ))
       ) : (
-        <p>Loading...</p>
+        <p>No details available for this date.</p>
       )}
     </div>
   );
