@@ -1,19 +1,18 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import ReCAPTCHA from 'react-google-recaptcha';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const AppointmentForm = ({ isOpen, handleCloseModal }) => {
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null); // Initialize with null
   const [recaptchaValue, setRecaptchaValue] = useState(null);
   const [error, setError] = useState("");
   const [offDays, setOffDays] = useState([]);
   const form = useRef();
 
-  // Fetch off days when component mounts
   useEffect(() => {
     fetch('http://localhost:5000/offdays')
       .then(response => response.json())
@@ -21,11 +20,9 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
       .catch(err => setError("Failed to fetch off days"));
   }, []);
 
-  // Fetch available slots when selected date changes
   useEffect(() => {
     if (selectedDate) {
-      const dateStr = selectedDate.toISOString().split('T')[0];
-      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(dateStr)}`)
+      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(selectedDate.toISOString().split('T')[0])}`)
         .then(response => response.json())
         .then(data => setAvailableSlots(data.slots))
         .catch(err => setError("Failed to fetch available slots"));
@@ -43,16 +40,16 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    // Access form values via form ref
-    const formData = new FormData(form.current);
+    // Access form data using form.elements
+    const formData = new FormData(event.currentTarget);
     const name = formData.get('name');
     const address = formData.get('address');
     const datetime = `${formData.get('date')}T${formData.get('time')}`;
     const number = formData.get('number');
     const email = formData.get('email');
-  
-    const appointment = { name, address, datetime, number, email, recaptcha: recaptchaValue };
-  
+
+    console.log('Form Data:', { name, address, datetime, number, email });
+    
     if (!recaptchaValue) {
       Swal.fire({
         title: 'Error!',
@@ -64,9 +61,9 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
     }
   
     try {
-      const responseCheckSlot = await fetch(`http://localhost:5000/check-slot?datetime=${encodeURIComponent(datetime)}`);
-      const slotAvailable = await responseCheckSlot.json();
-  
+      const response = await fetch(`http://localhost:5000/check-slot?datetime=${encodeURIComponent(datetime)}`);
+      const slotAvailable = await response.json();
+      
       if (!slotAvailable.available) {
         throw new Error('Selected time slot is not available.');
       }
@@ -76,7 +73,7 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(appointment),
+        body: JSON.stringify({ name, address, datetime, number, email, recaptcha: recaptchaValue }),
       });
   
       if (!responseBook.ok) {
@@ -86,12 +83,12 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
       const data = await responseBook.json();
       if (data.insertedId) {
         const templateParams = {
-          name: name,
-          email: email,
-          address: address,
-          number: number,
+          name,
+          email,
+          address,
+          number,
           date: formData.get('date'),
-          time: formData.get('time')
+          time: formData.get('time'),
         };
   
         emailjs.send('service_hif5and', 'template_itcg9u7', templateParams, '-rKJeI0iB4ZX-hOPq')
@@ -102,7 +99,7 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
               icon: 'success',
               confirmButtonText: 'Done'
             });
-          }, () => {
+          }, (error) => {
             Swal.fire({
               title: 'Error!',
               text: 'Failed to send confirmation email.',
@@ -125,7 +122,11 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
 
   // Function to check if a date is an off day
   const isOffDay = (date) => {
-    return offDays.includes(date.toISOString().split('T')[0]);
+    const selectedDate = new Date(date);
+        // Adjust for timezone offset to ensure correct date
+    const offsetDate = new Date(selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000);
+    const formattedDate = offsetDate.toISOString().split('T')[0];
+    return offDays.includes(formattedDate);
   };
 
   return (
@@ -144,13 +145,14 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
           <div className="flex items-center justify-start mb-2">
             <div className="w-1/2 mr-2">
               <label className="block text-sm font-medium text-gray-700 italic pb-2">Date</label>
-              <DatePicker
-                selected={selectedDate}
+              <DatePicker 
+                selected={selectedDate} 
                 onChange={handleDateChange}
-                minDate={new Date()}
                 filterDate={(date) => !isOffDay(date)}
+                className="input input-bordered w-full"
+                minDate={new Date()}
                 dateFormat="yyyy-MM-dd"
-                className="input input-bordered w-full h-10"
+                name="date"
               />
             </div>
             <div className="w-1/2">
@@ -162,14 +164,14 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
               </select>
             </div>
           </div>
-
+          
           <div className="flex items-center justify-start mb-2">
             <div className="w-1/2 mr-2">
               <label className="block text-sm font-medium text-gray-700 italic pb-2">Name</label>
               <input 
                 type="text" 
                 name="name"
-                className="input input-bordered w-full h-10" 
+                className="input input-bordered w-full" 
                 required 
               />
             </div>
@@ -178,7 +180,7 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
               <input 
                 type="tel" 
                 name="number"
-                className="input input-bordered w-full h-10" 
+                className="input input-bordered w-full" 
                 required 
               />
             </div>
@@ -190,7 +192,7 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
               <input 
                 type="email" 
                 name="email"
-                className="input input-bordered w-full h-10" 
+                className="input input-bordered w-full" 
                 required 
               />
             </div>
@@ -199,7 +201,7 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
               <input 
                 type="text" 
                 name="address"
-                className="input input-bordered w-full h-10" 
+                className="input input-bordered w-full" 
                 required 
               />
             </div>

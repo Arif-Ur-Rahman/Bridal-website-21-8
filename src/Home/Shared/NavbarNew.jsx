@@ -83,7 +83,7 @@ const Navbar = () => {
               <nav className="flex space-x-4 text-xs lg:text-lg lg:space-x-10 items-center justify-center">
                 <a href="/" className="hover:text-black">Home</a>
                 <a href="/offday" className="hover:text-black">About</a>
-                <a href="/shop" className="hover:text-black">Shop</a>
+                <a href="/dashboard/d" className="hover:text-black">Shop</a>
                 <a href="/category" className="hover:text-black">Category</a>
                 <a href="/blog" className="hover:text-black">Blog</a>
                 <a href="/contact" className="hover:text-black">Contact</a>
