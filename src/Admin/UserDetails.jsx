@@ -47,8 +47,8 @@ const UserDetails = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">User Appointment Details</h1>
+    <div className="p-4 font-mono">
+      <h1 className="text-xl font-bold mb-4 my-10 text-center">User Appointment Details</h1>
       {error ? (
         <p>{error}</p>
       ) : (
@@ -57,11 +57,12 @@ const UserDetails = () => {
             <div key={detail._id} className="card bg-base-100 shadow-xl">
               <div className="card-body">
                 <p><strong>Date:</strong> {new Date(detail.datetime).toDateString()}</p>
+                <p><strong>Time:</strong> {new Date(detail.datetime).toTimeString()}</p>
                 <p><strong>Email:</strong> {detail.email}</p>
                 <p><strong>Name:</strong> {detail.name}</p>
                 <p><strong>Address:</strong> {detail.address}</p>
                 <p><strong>Number:</strong> {detail.number}</p>
-                <p><strong>Date:</strong> {new Date(detail.datetime).toTimeString()}</p>
+                
                 <div className="card-actions justify-end">
                   <button 
                     className="btn  bg-red-500 hover:bg-red-700 text-white"

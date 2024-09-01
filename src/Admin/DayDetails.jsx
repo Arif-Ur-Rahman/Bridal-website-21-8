@@ -44,8 +44,8 @@ const DayDetails = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Appointment Details for {date}</h1>
+    <div className="p-4 font-mono">
+      <h1 className="text-2xl font-bold mb-4 text-center my-10 ">Appointment Details for {date}</h1>
       {error ? (
         <p>{error}</p>
       ) : details.length > 0 ? (
@@ -54,11 +54,11 @@ const DayDetails = () => {
             <div key={detail._id} className="card bg-base-100 shadow-xl">
               <div className="card-body">
                 <p><strong>Date:</strong> {new Date(detail.datetime).toDateString()}</p>
+                <p><strong>Time:</strong> {new Date(detail.datetime).toTimeString()}</p>
                 <p><strong>Name:</strong> {detail.name}</p>
                 <p><strong>Address:</strong> {detail.address}</p>
                 <p><strong>Email:</strong> {detail.email}</p>
                 <p><strong>Number:</strong> {detail.number}</p>
-                <p><strong>Date:</strong> {new Date(detail.datetime).toTimeString()}</p>
                 <div className="card-actions justify-end">
                   <button 
                     onClick={() => handleDelete(detail._id)} 
