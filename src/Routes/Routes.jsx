@@ -5,11 +5,12 @@ import OffDayManager from "../Admin/Offday";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 // import A from "../Pages/Admin/Homepage/A";
-import E from "../Pages/Employee/Homepage/E";
+// import E from "../Pages/Employee/Homepage/E";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import DayDetails from "../Admin/DayDetails";
 import CalendarComponent from "../Admin/CalenderComponent";
+import UserDetails from "../Admin/UserDetails";
 // import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
@@ -48,18 +49,18 @@ const router = createBrowserRouter([
           },
           {
             path: 'details/:date',
-            element: <DayDetails></DayDetails>
+            element: <PrivateRoute><DayDetails></DayDetails></PrivateRoute>
           },
           {
             path: 'd',
-            element: <CalendarComponent></CalendarComponent>,
+            element: <PrivateRoute><CalendarComponent></CalendarComponent> </PrivateRoute>,
           },
           // User or Employee's Path
           {
-            path: 'epage', // Removed leading slash
+            path: 'userpage', // Removed leading slash
             element: (
               <PrivateRoute>
-                <E></E>
+                <UserDetails></UserDetails>
               </PrivateRoute>
             ),
           },

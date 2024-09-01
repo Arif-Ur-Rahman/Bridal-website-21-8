@@ -11,7 +11,7 @@ const Login = () => {
     const [disable, setDisable] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/dashboard/epage";
+    const from = location.state?.from?.pathname || "/dashboard/userpage";
 
     // useEffect(() => {
     //     loadCaptchaEnginge(6);

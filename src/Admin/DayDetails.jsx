@@ -19,7 +19,6 @@ const DayDetails = () => {
         console.log('Requesting date:', formattedDate); // Debugging line
 
         const response = await axios.get(`http://localhost:5000/app/${formattedDate}`);
-         
         setDetails(response.data);
       } catch (err) {
         console.error('Error fetching details:', err);
@@ -29,7 +28,8 @@ const DayDetails = () => {
 
     fetchDetails();
   }, [date]);
-  // for delete 
+
+  // For delete
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(`http://localhost:5000/app/${id}`);
@@ -45,25 +45,32 @@ const DayDetails = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Details for {date}</h1>
+      <h1 className="text-xl font-bold mb-4">Appointment Details for {date}</h1>
       {error ? (
         <p>{error}</p>
       ) : details.length > 0 ? (
-        details.map((detail) => (
-          <div key={detail._id} className="bg-white p-4 rounded-lg shadow-md mb-4">
-            <p><strong>Date:</strong> {new Date(detail.datetime).toDateString()}</p>
-            <p><strong>Name:</strong> {detail.name}</p>
-            <p><strong>Address:</strong> {detail.address}</p>
-            <p><strong>Email:</strong> {detail.email}</p>
-            <p><strong>Number:</strong> {detail.number}</p>
-            <button 
-              onClick={() => handleDelete(detail._id)} 
-              className="bg-red-500 text-white px-4 py-2 rounded"
-            >
-              Delete
-            </button>
-          </div>
-        ))
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {details.map((detail) => (
+            <div key={detail._id} className="card bg-base-100 shadow-xl">
+              <div className="card-body">
+                <p><strong>Date:</strong> {new Date(detail.datetime).toDateString()}</p>
+                <p><strong>Name:</strong> {detail.name}</p>
+                <p><strong>Address:</strong> {detail.address}</p>
+                <p><strong>Email:</strong> {detail.email}</p>
+                <p><strong>Number:</strong> {detail.number}</p>
+                <p><strong>Date:</strong> {new Date(detail.datetime).toTimeString()}</p>
+                <div className="card-actions justify-end">
+                  <button 
+                    onClick={() => handleDelete(detail._id)} 
+                    className="btn  bg-red-500 hover:bg-red-700 text-white"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
         <p>No details available for this date.</p>
       )}

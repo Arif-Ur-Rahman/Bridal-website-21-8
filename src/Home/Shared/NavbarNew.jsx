@@ -86,7 +86,7 @@ const Navbar = () => {
                 <a href="/offday" className="hover:text-black">About</a>
                 <a href="/dashboard/d" className="hover:text-black">Shop</a>
                 <a href="/category" className="hover:text-black">Category</a>
-                <a href="/blog" className="hover:text-black">Blog</a>
+                <a href="/dashboard/userpage" className="hover:text-black">Blog</a>
                 <a href="/contact" className="hover:text-black">Contact</a>
               </nav>
             </div>
