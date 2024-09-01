@@ -115,7 +115,7 @@ const Login = () => {
                                 <button disabled={disable} className="btn bg-[#7E2553] text-white hover:bg-[#7E2553]">Login</button>
                             </div> */}
                             <div className="form-control mt-6">
-                                <button   className="btn bg-[#7E2553] text-white hover:bg-[#7E2553]">Login</button>
+                                <button   className="btn bg-yellow-600 text-white hover:bg-yellow-600">Login</button>
                             </div>
                         </form>
                         <SocialLogin />

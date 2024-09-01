@@ -40,7 +40,7 @@ const OffDayManager = () => {
         </div>
         <button
           type="submit"
-          className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600"
+          className="bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-600"
         >
           Add Off Day
         </button>
