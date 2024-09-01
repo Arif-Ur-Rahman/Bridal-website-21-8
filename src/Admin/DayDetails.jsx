@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const OffDayDetails = () => {
+const DayDetails = () => {
   const { date } = useParams(); // 'date' is a string in 'YYYY-MM-DD' format
   const [details, setDetails] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -18,7 +19,7 @@ const OffDayDetails = () => {
         console.log('Requesting date:', formattedDate); // Debugging line
 
         const response = await axios.get(`http://localhost:5000/app/${formattedDate}`);
-        consloe.log("........", response)
+         
         setDetails(response.data);
       } catch (err) {
         console.error('Error fetching details:', err);
@@ -28,6 +29,19 @@ const OffDayDetails = () => {
 
     fetchDetails();
   }, [date]);
+  // for delete 
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/app/${id}`);
+      console.log(response.data.message);
+
+      // Update the state after deletion
+      setDetails(details.filter(detail => detail._id !== id));
+    } catch (err) {
+      console.error('Error deleting detail:', err);
+      setError('Error deleting detail.');
+    }
+  };
 
   return (
     <div className="p-4">
@@ -42,6 +56,12 @@ const OffDayDetails = () => {
             <p><strong>Address:</strong> {detail.address}</p>
             <p><strong>Email:</strong> {detail.email}</p>
             <p><strong>Number:</strong> {detail.number}</p>
+            <button 
+              onClick={() => handleDelete(detail._id)} 
+              className="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Delete
+            </button>
           </div>
         ))
       ) : (
@@ -51,4 +71,4 @@ const OffDayDetails = () => {
   );
 };
 
-export default OffDayDetails;
+export default DayDetails;

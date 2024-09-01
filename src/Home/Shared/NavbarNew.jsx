@@ -45,8 +45,19 @@ const Navbar = () => {
     <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white hover:text-black'}`}>
       <div className="container mx-auto space-x-2 lg:space-x-0 lg:px-10 py-2 flex flex-row items-center justify-center lg:justify-between">
         <div className="flex lg:space-x-4">
-          <button className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base ">COUTURE</button>
-          <button className="hover:bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base">DIFFUSE</button>
+          {/* <button className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base ">COUTURE</button>
+          <button className="hover:bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base">DIFFUSE</button> */}
+          {user ? (
+            <>
+              {/* <img className='w-8 h-8 rounded-full' src={user.photoURL} alt="User" /> */}
+              <span >{user.displayName}</span>
+              <a onClick={handleLogOut} className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base ">SignOut</a>
+            </>
+          ) : (
+            <Link to='/login' className="">
+              <FaUser className="text-xs lg:text-xl cursor-pointer" />
+            </Link>
+          )}
         </div>
         <h1 className="text-sm lg:text-3xl font-semibold">
           {isScrolled ? <img className='w-8 h-8 lg:w-16 lg:h-16' src={logo} alt="Logo" /> : 'DIAMOND BRIDAL'}
@@ -62,17 +73,7 @@ const Navbar = () => {
               Appointment
             </button>
           </div>
-          {user ? (
-            <>
-              <img className='w-8 h-8 rounded-full' src={user.photoURL} alt="User" />
-              <span>{user.displayName}</span>
-              <a onClick={handleLogOut} className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base ">SignOut</a>
-            </>
-          ) : (
-            <Link to='/login' className="">
-              <FaUser className="text-xs lg:text-xl cursor-pointer" />
-            </Link>
-          )}
+          
         </div>
       </div>
       <AppointmentForm isOpen={isModalOpen} handleCloseModal={handleCloseModal} />
