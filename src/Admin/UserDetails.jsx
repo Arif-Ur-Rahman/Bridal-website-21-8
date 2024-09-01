@@ -47,7 +47,7 @@ const UserDetails = () => {
   };
 
   return (
-    <div className="p-4 font-mono">
+    <div className="p-4 font-mono my-28">
       <h1 className="text-xl font-bold mb-4 my-10 text-center">User Appointment Details</h1>
       {error ? (
         <p>{error}</p>

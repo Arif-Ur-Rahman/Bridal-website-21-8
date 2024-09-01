@@ -60,7 +60,7 @@ const Login = () => {
   
           // Redirect based on user role
           if (userRole === 'admin') {
-              navigate("/dashboard/apage", { replace: true });
+              navigate("/dashboard/d", { replace: true });
           } else {
               navigate(from, { replace: true });
           }

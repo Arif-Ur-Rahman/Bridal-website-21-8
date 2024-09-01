@@ -42,18 +42,18 @@ const router = createBrowserRouter([
           {
             path: 'apage', // Removed leading slash
             element: (
-              <PrivateRoute>
+               
                 <OffDayManager></OffDayManager>
-                </PrivateRoute>
+               
             ),
           },
           {
             path: 'details/:date',
-            element: <PrivateRoute><DayDetails></DayDetails></PrivateRoute>
+            element:  <DayDetails></DayDetails> 
           },
           {
             path: 'd',
-            element: <PrivateRoute><CalendarComponent></CalendarComponent> </PrivateRoute>,
+            element:  <CalendarComponent></CalendarComponent>,
           },
           // User or Employee's Path
           {

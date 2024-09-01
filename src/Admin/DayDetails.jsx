@@ -44,7 +44,7 @@ const DayDetails = () => {
   };
 
   return (
-    <div className="p-4 font-mono">
+    <div className="p-4 font-mono my-28">
       <h1 className="text-2xl font-bold mb-4 text-center my-10 ">Appointment Details for {date}</h1>
       {error ? (
         <p>{error}</p>

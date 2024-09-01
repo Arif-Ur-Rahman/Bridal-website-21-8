@@ -44,11 +44,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white hover:text-black'}`}>
+    <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-slate-900 text-white hover:bg-white hover:text-black'}`}>
       <div className="container mx-auto space-x-2 lg:space-x-0 lg:px-10 py-2 flex flex-row items-center justify-center lg:justify-between">
         <div className="flex lg:space-x-4">
-          {/* <button className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base ">COUTURE</button>
-          <button className="hover:bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base">DIFFUSE</button> */}
+          
           {user ? (
             <>
               {/* <img className='w-8 h-8 rounded-full' src={user.photoURL} alt="User" /> */}
@@ -85,11 +84,9 @@ const Navbar = () => {
             <div className="container mx-auto px-4">
               <nav className="flex space-x-4 text-xs lg:text-lg lg:space-x-10 items-center justify-center">
                 <a href="/" className="hover:text-black">Home</a>
-                <a href="/offday" className="hover:text-black">About</a>
-                <a href="/dashboard/d" className="hover:text-black">Shop</a>
-                <a href="/category" className="hover:text-black">Category</a>
-                <a href="/dashboard/userpage" className="hover:text-black">Blog</a>
-                <a href="/contact" className="hover:text-black">Contact</a>
+                <a href="/offday" className="hover:text-black">Add OffDay</a>
+                <a href="/dashboard/d" className="hover:text-black">Show Appointment</a>
+          
               </nav>
             </div>
           </div>

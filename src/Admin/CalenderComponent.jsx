@@ -18,7 +18,7 @@ const CalendarComponent = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 text-center my-40 lg:mx-96">
       <Calendar
         onClickDay={handleDateClick}
         value={date}
