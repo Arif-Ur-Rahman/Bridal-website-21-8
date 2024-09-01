@@ -10,10 +10,11 @@ const Dashboard = () => {
     return (
         <div className="">
             <div className="flex-1 max-w-7xl mx-auto">
-                {isAdmin ? 
+                {/* {isAdmin ? 
                     <Navbar /> : 
                     <UNavbar />
-                }
+                } */}
+                <Navbar />
                 <Outlet />
             </div>
         </div>
