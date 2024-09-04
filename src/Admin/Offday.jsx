@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Sidebar from '../Home/Shared/ANavbar';
 
 const OffDayManager = () => {
   const [selectedDate, setSelectedDate] = useState('');
@@ -22,13 +23,15 @@ const OffDayManager = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Mark Off Days for Appointments</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex justify-center items-center">
+        <Sidebar></Sidebar>{/* Sidebar Component */}
+    <div className="container mx-auto p-4 my-10">
+      <h2 className="text-2xl font-bold mb-4 text-center">Mark Off Days for Appointments</h2>
+      <form onSubmit={handleSubmit} className="space-y-4 text-center mx-64">
         <div>
-          <label htmlFor="off-day" className="block text-sm font-medium text-gray-700">
+          {/* <label htmlFor="off-day" className="block text-sm font-medium text-gray-700">
             Select Date:
-          </label>
+          </label> */}
           <input
             type="date"
             id="off-day"
@@ -46,6 +49,7 @@ const OffDayManager = () => {
         </button>
       </form>
       {message && <p className="mt-4 text-lg font-semibold">{message}</p>}
+    </div>
     </div>
   );
 };

@@ -11,6 +11,14 @@ import PrivateRoute from "./PrivateRoute";
 import DayDetails from "../Admin/DayDetails";
 import CalendarComponent from "../Admin/CalenderComponent";
 import UserDetails from "../Admin/UserDetails";
+import Contact from "../Pages/Contact/Contact";
+import AboutSection from "../Pages/AboutSection";
+import SubService from "../Pages/SubService";
+import Category1 from "../Pages/Category/Category1";
+import Category2 from "../Pages/Category/Category2";
+import Category3 from "../Pages/Category/Category3";
+import Shop1 from "../Pages/Shop/Shop1";
+import Shop2 from "../Pages/Shop/Shop2";
 // import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
@@ -34,13 +42,50 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register></Register>,
       },
+      // sub nav part page........
+      {
+        path: '/contact',
+        element: <Contact></Contact>,
+      },
+      {
+        path: '/about',
+        element: <AboutSection></AboutSection>
+      },
+      {
+        path: '/service',
+        element: <SubService></SubService>
+      },
+        // shop part start
+      {
+        path: '/shop1',
+        element: <Shop1></Shop1>
+      },
+      {
+        path: '/shop2',
+        element: <Shop2></Shop2>
+      },
+      // shop part end
+      // Category part start
+      {
+        path: '/cat1',
+        element: <Category1></Category1>
+      },
+      {
+        path: '/cat2',
+        element: <Category2></Category2>
+      },
+      {
+        path: '/cat3',
+        element: <Category3></Category3>
+      },
+      // category part end
       // ...........admin+user............
       {
         path: '/dashboard',
         element: <Dashboard></Dashboard>,
         children: [
           {
-            path: 'apage', // Removed leading slash
+            path: 'offday', // Removed leading slash
             element: (
                
                 <OffDayManager></OffDayManager>
@@ -52,7 +97,7 @@ const router = createBrowserRouter([
             element:  <DayDetails></DayDetails> 
           },
           {
-            path: 'd',
+            path: 'open-details',
             element:  <CalendarComponent></CalendarComponent>,
           },
           // User or Employee's Path

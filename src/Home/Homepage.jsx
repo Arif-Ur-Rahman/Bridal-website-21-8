@@ -26,7 +26,7 @@ const Homepage = () => {
             <Groom></Groom>
             <Moments />
             
-            <Footer />
+            {/* <Footer /> */}
             <WhatsApp></WhatsApp>
             <Scroll></Scroll>
         </div>

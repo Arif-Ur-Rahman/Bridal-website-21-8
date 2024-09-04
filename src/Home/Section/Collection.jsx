@@ -4,8 +4,8 @@ import b1 from "../../assets/img/b1.jpg";
 import service3 from "../../assets/img/service-3.jpg";
 import c2 from "../../assets/img/c2.jpg";
 import { Lightbox } from 'react-modal-image';
-import { EyeIcon } from "@heroicons/react/24/outline"; // Ensure this import path is correct
-
+// import { EyeIcon } from "@heroicons/react/24/outline"; // Ensure this import path is correct
+import { FaEye } from 'react-icons/fa'; 
 const NewCollections = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -51,7 +51,7 @@ const NewCollections = () => {
                                         className="text-white bg-transparent p-2 rounded-full"
                                         onClick={() => handleImageClick(item.src)}
                                     >
-                                        <EyeIcon className="w-8 h-8" />
+                                        <FaEye className="w-8 h-8" />
                                     </button>
                                 </div>
                                 <div className="text-center p-4">

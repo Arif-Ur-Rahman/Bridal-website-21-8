@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Sidebar from '../Home/Shared/ANavbar';
 
 const DayDetails = () => {
   const { date } = useParams(); // 'date' is a string in 'YYYY-MM-DD' format
@@ -44,7 +45,13 @@ const DayDetails = () => {
   };
 
   return (
-    <div className="p-4 font-mono my-28">
+    <div className="flex justify-center items-center">
+        <Sidebar></Sidebar> {/* Sidebar Component */}
+     
+        
+    
+     
+    <div className="p-4 font-mono ">
       <h1 className="text-2xl font-bold mb-4 text-center my-10 ">Appointment Details for {date}</h1>
       {error ? (
         <p>{error}</p>
@@ -75,6 +82,9 @@ const DayDetails = () => {
         <p>No details available for this date.</p>
       )}
     </div>
+    </div>
+  
+    
   );
 };
 

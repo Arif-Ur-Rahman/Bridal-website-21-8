@@ -60,7 +60,7 @@ const Login = () => {
   
           // Redirect based on user role
           if (userRole === 'admin') {
-              navigate("/dashboard/d", { replace: true });
+              navigate("/dashboard/open-details", { replace: true });
           } else {
               navigate(from, { replace: true });
           }
@@ -90,7 +90,7 @@ const Login = () => {
         <div>
             <div className="flex justify-center mt-20">
                 <div className="hero-content flex-col lg:flex-row">
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-yellow-50">
                         <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -117,6 +117,11 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button   className="btn bg-yellow-600 text-white hover:bg-yellow-600">Login</button>
                             </div>
+                            <div className="form-control mt-6">
+                               
+                                <a href="/register" className="text-center underline text-yellow-600 hover:text-yellow-600">Register </a>
+                            </div>
+
                         </form>
                         <SocialLogin />
                     </div>
