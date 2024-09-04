@@ -8,7 +8,9 @@ const Category1 = () => {
         <>
         <Navbar></Navbar>
         <div className="mt-36">
-            <Groom></Groom>
+          <div className="min-h-screen">
+          <Groom></Groom>
+          </div>
             <Footer></Footer>
         </div>
         </>

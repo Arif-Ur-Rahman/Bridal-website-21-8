@@ -17,10 +17,10 @@ const Shop2 = () => {
   return (
    <>
    <Navbar></Navbar>
-   <div className="container-fluid hero-header bg-yellow-50 py-12 mb-12 px-16 mt-36">
+   <div className="container-fluid hero-header bg-yellow-50 py-12 mb-4 px-16 mt-36">
     {/* head to head mamu */}
     <div className="container-fluid bg-light py-5 mb-5">
-      <div className="container py-5">
+      <div className="container py-5 mx-auto">
         <div className="flex items-center justify-between space-x-10 align-items-center">
           <div className="col-lg-6">
             <h1 className="text-4xl font-bold mb-3 animate-slideInDown">Shop</h1>

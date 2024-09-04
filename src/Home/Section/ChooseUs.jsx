@@ -9,7 +9,7 @@ import { faHeadset, faTag, faTools } from '@fortawesome/free-solid-svg-icons';
 
 const ChooseUs = () => {
   return (
-    <section className='bg-[#FDF5EB] font-mono my-5 w-full h-full'>
+    <section className='bg-[#FDF5EB] font-mono  my-4 w-full h-full'>
       <div className="container-fluid bg-light py-5 mb-5 mx-auto">
         <div className="text-center mx-auto mb-5 max-w-lg">
           <p className="text-[#EDB354] uppercase mb-2 pt-6">Why Choose Us!</p>
