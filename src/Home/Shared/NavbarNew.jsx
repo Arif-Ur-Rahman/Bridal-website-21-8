@@ -74,7 +74,7 @@ const Navbar = () => {
           )}
         </div>
         <h1 className="text-sm lg:text-3xl font-semibold">
-          {isScrolled ? <img className='w-8 h-8 lg:w-16 lg:h-16' src={logo} alt="Logo" /> : 'DIAMOND BRIDAL'}
+          {isScrolled ? <img className='w-8 h-8 lg:w-24 lg:h-16' src={logo} alt="Logo" /> : 'DIAMOND BRIDAL'}
         </h1>
         <div className="flex items-center space-x-2 lg:space-x-4">
            {/* Appointment Button here */}
