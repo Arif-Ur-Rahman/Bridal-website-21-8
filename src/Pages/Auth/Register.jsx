@@ -52,7 +52,7 @@ const RegAdmin = () => {
             <div className="flex justify-center mt-20">
                 <div className="hero-content flex-col lg:flex-row">
                     
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-yellow-50">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -91,10 +91,10 @@ const RegAdmin = () => {
 
 
                             <div className="form-control mt-6">
-                                <button type="submit" className="btn bg-[#7E2553] text-white hover:bg-[#7E2553] ">Sign Up</button>
+                                <button type="submit" className="btn bg-yellow-600 text-white hover:bg-yellow-600">Sign Up</button>
                             </div>
                         </form>
-                        <p className="text-center my-4">Already have an Account?<Link to='/login'>Login</Link></p>
+                        <p className="text-center my-4 text-yellow-600">Already have an Account?<Link to='/login'>Login</Link></p>
                         {/* <SocialLogin></SocialLogin> */}
                     </div>
                 </div>

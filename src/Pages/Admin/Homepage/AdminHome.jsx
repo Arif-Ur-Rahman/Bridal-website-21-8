@@ -12,9 +12,7 @@ const AdminHome = () => {
              {/* <Helmet>
                 <title>Admin | Home</title>
             </Helmet> */}
-            {/* <PenReq></PenReq>
-            <TopMostReq></TopMostReq>
-            <LimitStock></LimitStock> */}
+           
             <OffDayManager></OffDayManager>
             
         </div>

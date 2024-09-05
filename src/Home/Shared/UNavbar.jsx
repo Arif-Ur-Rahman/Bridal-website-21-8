@@ -45,26 +45,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white hover:text-black'}`}>
+    <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-slate-900 text-white hover:bg-white hover:text-black'}`}>
       <div className="container mx-auto  space-x-1 lg:space-x-0 lg:px-10 py-2 flex flex-row items-center justify-around lg:justify-between">
         <div className="flex lg:space-x-4">
           {user ? (
             <>
               <div className="flex items-center space-x-1 lg:space-x-4">
-              {/* <span className='text-xs lg:text-base'>{user.displayName}</span> */}
-              <span 
-                className='text-xs lg:text-base cursor-pointer' 
-                onClick={() => {
-                  if (user.email === 'admin@gmail.com') {
-                    navigate('/dashboard/open-details'); // Admin dashboard or details page
-              } else {
-                    navigate('/dashboard/userpage'); // Regular user page
-              }
-              }}
-            >
-              {user.displayName}
-        </span>
-                <a onClick={handleLogOut} className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base">SignOut</a>
+              <span className='text-xs lg:text-base'>{user.displayName}</span>
+              <a onClick={handleLogOut} className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base">SignOut</a>
               </div>
             </>
           ) : (

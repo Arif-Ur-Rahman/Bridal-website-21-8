@@ -25,9 +25,9 @@ const MomentsWithCustomers = () => {
   ];
 
   return (
-    <section className="container-xxlbg-[#FDF5EB] font-mono py-6">
+    <section className="container-xxlbg-[#FDF5EB] font-mono py-6 mb-4">
       <div className="container  mx-auto ">
-        <div className="text-center mx-auto mb-5" style={{ maxWidth: '500px' }}>
+        <div className="text-center mx-auto mb-2" style={{ maxWidth: '500px' }}>
           <h1 className="display-6 mb-0 text-3xl pt-6">Moments With Customers</h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-10 py-6">

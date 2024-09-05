@@ -15,7 +15,7 @@ import Scroll from './Scroll';
 
 const Homepage = () => {
     return (
-        <div className=''>
+        <div className='min-h-screen flex flex-col'>
             <NavbarNew />
             <HeroSection />
             <ChooseUs />
