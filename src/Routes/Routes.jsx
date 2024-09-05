@@ -30,10 +30,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Homepage></Homepage>,
       },
-      {
-        path: '/offday',
-        element: <OffDayManager></OffDayManager>,
-      },
+
       {
         path: '/login',
         element: <Login></Login>,

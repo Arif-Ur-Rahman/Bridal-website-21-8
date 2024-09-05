@@ -28,8 +28,8 @@ const Sidebar = () => {
       </div>
 
       {/* Fab for small screens */}
-      <div className="lg:hidden fixed bottom-4 right-4">
-        <button onClick={toggleSidebar} className="bg-yellow-600 text-white p-3 rounded-full shadow-lg">
+      <div className="lg:hidden fixed top-0.5 right-0.5">
+        <button onClick={toggleSidebar} className="bg-yellow-600 text-white p-2 rounded-full shadow-lg">
           <FaBars className="h-6 w-6" />
         </button>
       </div>

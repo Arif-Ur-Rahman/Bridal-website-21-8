@@ -12,22 +12,25 @@ const OffDayManager = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Selected Date:', selectedDate); // Log the selected date
     try {
       const response = await axios.post('http://localhost:5000/offdays', { date: selectedDate });
       if (response.status === 201) {
         setMessage('Off day added successfully!');
       }
     } catch (error) {
+      console.error('Error adding off day:', error.response.data); // Log the error message from the server
       setMessage('Failed to add off day.');
     }
   };
+  
 
   return (
     <div className="flex justify-center items-center">
         <Sidebar></Sidebar>{/* Sidebar Component */}
     <div className="container mx-auto p-4 my-10">
-      <h2 className="text-2xl font-bold mb-4 text-center">Mark Off Days for Appointments</h2>
-      <form onSubmit={handleSubmit} className="space-y-4 text-center mx-64">
+      <h2 className=" text-sm lg:text-2xl font-bold mb-4 text-center">Mark Off Days for Appointments</h2>
+      <form onSubmit={handleSubmit} className="space-y-4 text-center lg:mx-64">
         <div>
           {/* <label htmlFor="off-day" className="block text-sm font-medium text-gray-700">
             Select Date:
@@ -48,7 +51,7 @@ const OffDayManager = () => {
           Add Off Day
         </button>
       </form>
-      {message && <p className="mt-4 text-lg font-semibold">{message}</p>}
+      {message && <p className="mt-4 text-lg font-semibold text-center">{message}</p>}
     </div>
     </div>
   );

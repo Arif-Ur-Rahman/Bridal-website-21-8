@@ -51,8 +51,20 @@ const Navbar = () => {
           {user ? (
             <>
               <div className="flex items-center space-x-1 lg:space-x-4">
-              <span className='text-xs lg:text-base'>{user.displayName}</span>
-              <a onClick={handleLogOut} className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base">SignOut</a>
+              {/* <span className='text-xs lg:text-base'>{user.displayName}</span> */}
+              <span 
+                className='text-xs lg:text-base cursor-pointer' 
+                onClick={() => {
+                  if (user.email === 'admin@gmail.com') {
+                    navigate('/dashboard/open-details'); // Admin dashboard or details page
+              } else {
+                    navigate('/dashboard/userpage'); // Regular user page
+              }
+              }}
+            >
+              {user.displayName}
+        </span>
+                <a onClick={handleLogOut} className="bg-zinc-400 px-2 lg:px-4 lg:py-1 rounded-none hover:text-black text-xs lg:text-base">SignOut</a>
               </div>
             </>
           ) : (
