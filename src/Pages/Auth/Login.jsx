@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from '../../Providers/AuthProvider';
 import SocialLogin from './SocialLogin';
 import axios from 'axios'; // Import axios for API requests
+import Navbar from '../../Home/Shared/NavbarNew';
 
 const Login = () => {
     const { signInUser } = useContext(AuthContext);
@@ -87,8 +88,9 @@ const Login = () => {
     // };
 
     return (
-        <div>
-            <div className="flex justify-center mt-20">
+        <div className=''>
+            {/* <Navbar></Navbar> */}
+            <div className="flex justify-center mt-20 items-center mx-auto">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-yellow-50">
                         <form onSubmit={handleLogin} className="card-body">

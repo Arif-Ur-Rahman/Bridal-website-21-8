@@ -4,8 +4,6 @@ import Homepage from "../Home/Homepage";
 import OffDayManager from "../Admin/Offday";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
-// import A from "../Pages/Admin/Homepage/A";
-// import E from "../Pages/Employee/Homepage/E";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import DayDetails from "../Admin/DayDetails";
@@ -19,96 +17,102 @@ import Category2 from "../Pages/Category/Category2";
 import Category3 from "../Pages/Category/Category3";
 import Shop1 from "../Pages/Shop/Shop1";
 import Shop2 from "../Pages/Shop/Shop2";
-// import AdminRoute from "./AdminRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: <Home />,
     children: [
       {
         path: '/',
-        element: <Homepage></Homepage>,
+        element: <Homepage />,
       },
-
       {
         path: '/login',
-        element: <Login></Login>,
+        element: <Login />,
       },
       {
         path: '/register',
-        element: <Register></Register>,
+        element: <Register />,
       },
-      // sub nav part page........
+      // sub nav part page
       {
         path: '/contact',
-        element: <Contact></Contact>,
+        element: <Contact />,
       },
       {
         path: '/about',
-        element: <AboutSection></AboutSection>
+        element: <AboutSection />
       },
       {
         path: '/service',
-        element: <SubService></SubService>
+        element: <SubService />
       },
-        // shop part start
+      // shop part start
       {
         path: '/shop1',
-        element: <Shop1></Shop1>
+        element: <Shop1 />
       },
       {
         path: '/shop2',
-        element: <Shop2></Shop2>
+        element: <Shop2 />
       },
       // shop part end
       // Category part start
       {
         path: '/cat1',
-        element: <Category1></Category1>
+        element: <Category1 />
       },
       {
         path: '/cat2',
-        element: <Category2></Category2>
+        element: <Category2 />
       },
       {
         path: '/cat3',
-        element: <Category3></Category3>
+        element: <Category3 />
       },
       // category part end
-      // ...........admin+user............
+      // admin+user routes
       {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <Dashboard />,
         children: [
           {
-            path: 'offday', // Removed leading slash
+            path: 'offday',
             element: (
-               
-                <OffDayManager></OffDayManager>
-               
+              <PrivateRoute>
+                <OffDayManager />
+              </PrivateRoute>
             ),
           },
           {
             path: 'details/:date',
-            element:  <DayDetails></DayDetails> 
+            element: (
+              <PrivateRoute>
+                <DayDetails />
+              </PrivateRoute>
+            ),
           },
           {
             path: 'open-details',
-            element:  <CalendarComponent></CalendarComponent>,
+            element: (
+              <PrivateRoute>
+                <CalendarComponent />
+              </PrivateRoute>
+            ),
           },
           // User or Employee's Path
           {
-            path: 'userpage', // Removed leading slash
+            path: 'userpage',
             element: (
               <PrivateRoute>
-                <UserDetails></UserDetails>
+                <UserDetails />
               </PrivateRoute>
             ),
           },
         ],
       },
-      // ..........admin+user...............
     ],
   },
 ]);

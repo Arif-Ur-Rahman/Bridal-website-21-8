@@ -1,25 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "./useAuth";
-import useAxiosSecure from "./useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useAdmin = () => {
-    // const {user, loading} = useContext(AuthContext);
-    const {user} = useContext(AuthContext);
-    const axiosSecure = useAxiosSecure();
-    // const {data: isAdmin, isPending, isLoading} = useQuery({
-    const {data: isAdmin, isPending} = useQuery({
+    const { user } = useContext(AuthContext); // use context for user details
+    const axiosSecure = useAxiosSecure(); // secure axios for API calls
+
+    // Fetch admin status using React Query
+    const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
         queryKey: [user?.email, 'isAdmin'],
-        enabled: !!user?.email && !!localStorage.getItem('access-token'),
-        queryFn: async()=>{
+        enabled: !!user?.email && !!localStorage.getItem('access-token'), // query enabled if user and token are present
+        queryFn: async () => {
             const res = await axiosSecure.get(`/user/admin/${user.email}`);
-            console.log(res.data);
-            return res.data?.admin;
+            console.log('Admin Status:', res.data);
+            return res.data?.admin; // expect a boolean response
         }
-    })
-    // return [isAdmin, isLoading]
-    return [isAdmin]
+    });
+
+    // Return both admin status and loading state
+    return [isAdmin, isAdminLoading];
 };
 
 export default useAdmin;

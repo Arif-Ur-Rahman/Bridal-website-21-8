@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
+import Navbar from "../../Home/Shared/NavbarNew";
 
 
 const RegAdmin = () => {
@@ -48,7 +49,8 @@ const RegAdmin = () => {
     };
 
    return (
-        <div>
+        <div className="space-y-40">
+            <Navbar></Navbar>
             <div className="flex justify-center mt-20">
                 <div className="hero-content flex-col lg:flex-row">
                     

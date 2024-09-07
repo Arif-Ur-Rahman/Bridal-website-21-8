@@ -124,9 +124,9 @@ class DemoCarousel extends Component {
                 <div>
                     <img className='w-full h-full object-cover' src={img4} alt="Slide 4" />
                 </div>
-                <div>
+                {/* <div>
                     <img className='w-full h-full object-cover' src={img5} alt="Slide 5" />
-                </div>
+                </div> */}
             </Carousel>
         );
     }

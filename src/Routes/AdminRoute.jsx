@@ -1,26 +1,27 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../Providers/AuthProvider";
 import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 import useAdmin from "../Hook/useAdmin";
 
 const AdminRoute = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
-    const { user } = useContext(AuthContext);
+    const { user, loading: authLoading } = useContext(AuthContext); // loading from auth context
+    const [isAdmin, isAdminLoading] = useAdmin(); // loading from admin hook
     const location = useLocation();
-    // const [isAdmin, isAdminLoading] = useAdmin();
-    const [isAdmin] = useAdmin();
 
-    console.log('User and Admin Status:', user, isAdmin);
+    console.log("User and Admin Status:", user, isAdmin, "Auth Loading:", authLoading, "Admin Loading:", isAdminLoading);
 
-    // if (loading || isAdminLoading) {
-    //     return <progress className="progress progress-accent w-56" value="100" max="100"></progress>;
-    // }
+    // If either the user or admin check is loading, show progress indicator
+    if (authLoading || isAdminLoading) {
+        return <progress className="progress progress-accent w-56" value="100" max="100"></progress>;
+    }
 
+    // If the user is authenticated and is an admin, allow access
     if (user && isAdmin) {
         return children;
     }
 
-    return <Navigate to='/login' state={{ from: location }} replace />;
+    // If not an admin, redirect to login page
+    return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default AdminRoute;

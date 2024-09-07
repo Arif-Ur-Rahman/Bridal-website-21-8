@@ -52,7 +52,8 @@ const UserDetails = () => {
   <UNavbar></UNavbar>
   <div className="p-4 font-mono my-16 lg:my-36">
       <h1 className="text-xl font-bold mb-4 my-10 text-center">User Appointment Details</h1>
-      {error ? (
+     <div className="flex items-center justify-center">
+     {error ? (
         <p>{error}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -79,7 +80,9 @@ const UserDetails = () => {
           ))}
         </div>
       )}
-      {message && <p className="text-green-500 mt-4">{message}</p>}
+      {/* {message && <p className="text-green-500 mt-4">{message}</p>} */}
+
+     </div>
     </div>
   </>
   );
