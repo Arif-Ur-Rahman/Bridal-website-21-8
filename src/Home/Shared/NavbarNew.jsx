@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  let closeDropdownTimeout = null;
 
   const handleLogOut = () => {
     logOut()
@@ -44,6 +45,29 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // ..................
+  const openShopDropdown = () => {
+    clearTimeout(closeDropdownTimeout);
+    setIsShopDropdownOpen(true);
+  };
+
+  const closeShopDropdown = () => {
+    closeDropdownTimeout = setTimeout(() => {
+      setIsShopDropdownOpen(false);
+    }, 200); // Delay closing the dropdown
+  };
+
+  const openCategoryDropdown = () => {
+    clearTimeout(closeDropdownTimeout);
+    setIsCategoryDropdownOpen(true);
+  };
+
+  const closeCategoryDropdown = () => {
+    closeDropdownTimeout = setTimeout(() => {
+      setIsCategoryDropdownOpen(false);
+    }, 200); // Delay closing the dropdown
+  };
+  // ..................
   return (
     <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white hover:text-black'}`}>
       <div className="container mx-auto  space-x-1 lg:space-x-0 lg:px-10 py-2 flex flex-row items-center justify-around lg:justify-between">
@@ -153,36 +177,45 @@ const Navbar = () => {
                 <a href="/about" className="hover:text-black">About</a>
                 <a href="/Service" className="hover:text-black">Service</a>
 
-                {/* Shop Dropdown */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsShopDropdownOpen(true)}
-                  onMouseLeave={() => setIsShopDropdownOpen(false)}
-                >
-                  <a href="" className="hover:text-black">Shop</a>
-                  {isShopDropdownOpen && (
-                    <div className="absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10">
-                      <a href="/shop1" className="block px-4 py-2 hover:bg-gray-200">Shop-1</a>
-                      <a href="/shop2" className="block px-4 py-2 hover:bg-gray-200">Shop-2</a>
-                    </div>
-                  )}
-                </div>
+      {/* Shop Dropdown */}
+      <div
+        className="relative"
+        onMouseEnter={openShopDropdown}
+        onMouseLeave={closeShopDropdown}
+      >
+        <a href="#" className="hover:text-black">Shop</a>
+        {isShopDropdownOpen && (
+          <div
+            className="absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10"
+            onMouseEnter={openShopDropdown}
+            onMouseLeave={closeShopDropdown}
+          >
+            <a href="/shop1" className="block px-4 py-2 hover:bg-gray-200">Shop-1</a>
+            <a href="/shop2" className="block px-4 py-2 hover:bg-gray-200">Shop-2</a>
+          </div>
+        )}
+      </div>
 
-                {/* Category Dropdown */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsCategoryDropdownOpen(true)}
-                  onMouseLeave={() => setIsCategoryDropdownOpen(false)}
-                >
-                  <a href="" className="hover:text-black">Category</a>
-                  {isCategoryDropdownOpen && (
-                    <div className="absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10">
-                      <a href="/cat1" className="block px-4 py-1 hover:bg-gray-200">Grooms</a>
-                      <a href="/cat2" className="block px-4 py-1 hover:bg-gray-200">Bride</a>
-                      <a href="/cat3" className="block px-4 py-1 hover:bg-gray-200">Ornaments</a>
-                    </div>
-                  )}
-                </div>
+      {/* Category Dropdown */}
+      <div
+        className="relative"
+        onMouseEnter={openCategoryDropdown}
+        onMouseLeave={closeCategoryDropdown}
+      >
+        <a href="#" className="hover:text-black">Category</a>
+        {isCategoryDropdownOpen && (
+          <div
+            className="absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-10"
+            onMouseEnter={openCategoryDropdown}
+            onMouseLeave={closeCategoryDropdown}
+          >
+            <a href="/cat1" className="block px-4 py-1 hover:bg-gray-200">Grooms</a>
+            <a href="/cat2" className="block px-4 py-1 hover:bg-gray-200">Bride</a>
+            <a href="/cat3" className="block px-4 py-1 hover:bg-gray-200">Ornaments</a>
+          </div>
+        )}
+      </div>
+
 
                 <a href="/contact" className="hover:text-black">Contact</a>
               </nav>

@@ -17,12 +17,12 @@ const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); // Track errors
   const axiosPublic = useAxiosPublic(); // Axios instance for API requests
 
   const createUser = (name, photoURL, email, password) => {
-    // setLoading(true);
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         return updateProfile(userCredential.user, {
@@ -31,20 +31,20 @@ const AuthProvider = ({ children }) => {
         })
           .then(() => {
             setUser({ ...userCredential.user, displayName: name, photoURL: photoURL }); // Manually update the state
-            // setLoading(false);
+            setLoading(false);
             return userCredential;
           })
           .catch((error) => {
             console.error('Error updating profile:', error);
             setError(error.message);
-            // setLoading(false);
+            setLoading(false);
             throw error;
           });
       })
       .catch((error) => {
         console.error('Error creating user:', error);
         setError(error.message);
-        // setLoading(false);
+        setLoading(false);
         throw error;
       });
   };
@@ -86,7 +86,7 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log('current value of the user', currentUser);
       setUser(currentUser); // Ensure user state is updated with current user data
-      // setLoading(false);
+      setLoading(false);
       
       // JWT Token setup
       if (currentUser) {
@@ -112,7 +112,7 @@ const AuthProvider = ({ children }) => {
   }, [axiosPublic]);
 
   // const authInfo = { user, loading, createUser, signInUser, signInWithGoogle, logOut };
-  const authInfo = { user, createUser, signInUser, signInWithGoogle, logOut };
+  const authInfo = { user, loading, createUser, signInUser, signInWithGoogle, logOut };
   console.log('username', user);
 
   return (

@@ -22,7 +22,7 @@ const CalendarComponent = () => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex justify-center items-center">
         <Sidebar /> {/* Sidebar Component */}
      
         

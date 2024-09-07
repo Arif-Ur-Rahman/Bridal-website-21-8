@@ -40,13 +40,14 @@ const DayDetails = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center">
       <Sidebar className="w-1/4" /> {/* Sidebar occupies 1/4 of the width */}
       
       <div className="lg:w-3/4 p-4 font-mono"> {/* Details section occupies 3/4 of the width */}
         <h1 className="text-sm lg:text-2xl font-bold mb-4 text-center my-10">
           Appointment Details for {date}
         </h1>
+        <div className="flex justify-center items-center">
         {error ? (
           <p>{error}</p>
         ) : details.length > 0 ? (
@@ -73,8 +74,9 @@ const DayDetails = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center">No details available for this date.</p>
+          <p className="">No details available for this date.</p>
         )}
+        </div>
       </div>
     </div>
   );
