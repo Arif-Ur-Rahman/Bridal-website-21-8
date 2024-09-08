@@ -1,6 +1,6 @@
 import React from 'react';
 import Groom from '../../Home/Section/Groom';
-import Navbar from '../../Home/Shared/NavbarNew';
+import Navbar from '../../Home/Shared/SubNavbar';
 import Footer from '../../Home/Shared/Footer';
  
 const Category1 = () => {

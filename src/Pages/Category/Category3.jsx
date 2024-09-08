@@ -1,4 +1,4 @@
-import Navbar from '../../Home/Shared/NavbarNew';
+import Navbar from '../../Home/Shared/SubNavbar';
 import Footer from '../../Home/Shared/Footer';
 import React, { useState } from 'react';
 import { Lightbox } from 'react-modal-image';

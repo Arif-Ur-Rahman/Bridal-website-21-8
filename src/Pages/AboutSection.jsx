@@ -2,14 +2,17 @@ import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 import m6 from "../assets/img/b6.jpg"
 import m1 from "../assets/img/about-1.jpg"
-import Navbar from '../Home/Shared/NavbarNew';
+ 
 import Footer from '../Home/Shared/Footer';
+import Navbar from '../Home/Shared/SubNavbar';
 
 const AboutSection = () => {
   return (
     <>
-    <Navbar></Navbar>
-    <div className="container mx-auto py-10 px-10 mt-36 min-h-screen ">
+  <Navbar></Navbar>
+    
+    <div className="bg-yellow-50">
+    <div className="container mx-auto py-10 px-10 mt-36 min-h-screen">
       <div className="flex flex-wrap -mx-4">
       <div className="w-full lg:w-1/2 px-4 wow fadeInUp" data-wow-delay="0.1s">
             <div className="relative h-full">
@@ -68,6 +71,7 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
     <Footer></Footer>
     </>

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import m6 from "../assets/img/cut.jpg";
 import m1 from "../assets/img/adj.jpg";
 import m2 from "../assets/img/alt.jpg";
-import Navbar from "../Home/Shared/NavbarNew";
+import Navbar from "../Home/Shared/SubNavbar";
 import Footer from "../Home/Shared/Footer";
 
 const tabData = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from './HeroSection';
+ 
 import Reels from './Section/Reels';
 import NavbarNew from './Shared/NavbarNew';
 import ChooseUs from './Section/ChooseUs';
@@ -11,13 +11,14 @@ import Moments from './Section/Moments';
 import Footer from './Shared/Footer';
 import WhatsApp from './WhatsApp';
 import Scroll from './Scroll';
+import DemoCarousel from './hero/HeroSection';
 
 
 const Homepage = () => {
     return (
         <div className='min-h-screen flex flex-col'>
             <NavbarNew />
-            <HeroSection />
+            <DemoCarousel></DemoCarousel>
             <ChooseUs />
             <Collection></Collection>
             <Reels />

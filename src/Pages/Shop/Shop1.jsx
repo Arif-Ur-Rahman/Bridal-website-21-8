@@ -10,16 +10,16 @@ import hero1 from '../../assets/img/hero-1.jpg'; // Adjust the path to your imag
 import hero2 from '../../assets/img/hero-2.jpg'; // 
  
 import { motion } from "framer-motion";
-import Navbar from "../../Home/Shared/NavbarNew";
+import Navbar from "../../Home/Shared/SubNavbar";
 import Footer from "../../Home/Shared/Footer";
 
 const Shop1 = () => {
   return (
    <>
    <Navbar></Navbar>
-   <div className="container-fluid hero-header bg-yellow-50 py-12 mb-4 px-16 mt-36">
+   <div className="container-fluid hero-header bg-yellow-50 pt-4 mb-4 px-16 mt-36">
     {/* head to head mamu */}
-    <div className="container-fluid bg-light py-5 mb-5">
+    {/* <div className="container-fluid bg-light py-5 mb-5">
       <div className="container py-5 mx-auto">
         <div className="flex items-center justify-between space-x-10 align-items-center">
           <div className="col-lg-6">
@@ -46,12 +46,12 @@ const Shop1 = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
     {/* head to head lolo */}
-      <div className="container py-12  mx-auto">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
           <div className="order-2 lg:order-1">
-            <div className="flex flex-col items-end space-y-4">
+            <div className="flex flex-col items-start lg:mb-52 space-y-4">
               <img
                 className="img-fluid   selection: bg-white p-3 w-full mb-4"
                 src={c2}
@@ -71,7 +71,7 @@ const Shop1 = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="fact-item bg-white text-center h-full p-10  rounded-lg shadow-lg">
+            <div className="fact-item bg-white text-center h-full p-10 lg:mb-96 rounded-lg shadow-lg">
               <a href="/" className="navbar-brand">
                 <h1 className="text-5xl text-yellow-600 font-playfair">Shop-3</h1>
               </a>
