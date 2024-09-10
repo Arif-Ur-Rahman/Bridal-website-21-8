@@ -1,0 +1,10 @@
+.appointment-tile {
+    background-color: green;
+    color: white;
+    border-radius: 100%; /* Full border radius for circular tiles */
+  }
+  
+  .appointment-tile:hover {
+    background-color: green !important ; /* Light green on hover */
+    font-size: large;
+  }

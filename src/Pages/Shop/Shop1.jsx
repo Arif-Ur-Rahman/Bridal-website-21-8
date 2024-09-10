@@ -15,9 +15,9 @@ import Footer from "../../Home/Shared/Footer";
 
 const Shop1 = () => {
   return (
-   <>
+   <div className="bg-[#FDF5EB]">
    <Navbar></Navbar>
-   <div className="container-fluid hero-header bg-[#FDF5EB]  pt-4 px-16 mt-36">
+   <div className="container-fluid hero-header pt-4 px-16 mt-36 mb-4 lg:mb-0">
     {/* head to head mamu */}
     {/* <div className="container-fluid bg-light py-5 mb-5">
       <div className="container py-5 mx-auto">
@@ -48,7 +48,7 @@ const Shop1 = () => {
       </div>
     </div> */}
     {/* head to head lolo */}
-      <div className="container mx-auto">
+      <div className="container mx-auto ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
           <div className="order-2 lg:order-1">
             <div className="flex flex-col items-start lg:mb-52 space-y-4">
@@ -144,7 +144,7 @@ const Shop1 = () => {
       </div>
     </div>
    <Footer></Footer>
-   </>
+   </div>
   );
 };
 

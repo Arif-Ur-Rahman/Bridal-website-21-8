@@ -63,7 +63,7 @@ const Reels = () => {
 
   return (
     <section className="relative py-16 px-8 bg-[#FDF5EB]  font-mono">
-      <h1 className="text-3xl mb-4 text-center">Reels Videos</h1>
+      <h1 className="text-3xl mb-4 text-center">Reels</h1>
       <div className="relative">
         <Slider {...settings}>
           {reelsData.map((reel) => (
