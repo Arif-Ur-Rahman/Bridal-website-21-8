@@ -1,0 +1,36 @@
+/* Custom style for the dots */
+.custom-dots {
+    position: absolute;
+    bottom: 40px; /* Adjust this value to position dots from the bottom */
+    right: 0px;  /* Position dots at the right corner */
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* Space between dots */
+    text-align: end !important; 
+    margin-right: 55px;
+}
+
+/* Style for the active dot */
+.slick-dots li.slick-active div {
+    background-color: white !important; /* Make active dot background white */
+    border-color: white !important; /* Ensure border stays white */
+}
+
+/* Optional: Hover effect */
+.slick-dots li div:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Hover effect */
+}
+
+@media (max-width: 768px) {
+    .custom-dots {
+        bottom: 20px; /* Adjust position for smaller screens */
+        right: 20px; /* Adjust position for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-dots {
+        bottom: 20px; /* Adjust position for extra-small screens */
+        right: 10px; /* Adjust position for extra-small screens */
+    }
+}

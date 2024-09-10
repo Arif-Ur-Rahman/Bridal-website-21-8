@@ -90,7 +90,7 @@ const Login = () => {
     return (
         <div className=''>
             {/* <Navbar></Navbar> */}
-            <div className="flex justify-center mt-20 items-center mx-auto">
+            <div className="flex justify-center mt-20 items-center mx-auto ">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-yellow-50">
                         <form onSubmit={handleLogin} className="card-body">

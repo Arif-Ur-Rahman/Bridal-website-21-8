@@ -21,16 +21,16 @@ const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null); // Track errors
   const axiosPublic = useAxiosPublic(); // Axios instance for API requests
 
-  const createUser = (name, photoURL, email, password) => {
+  const createUser = (name, email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         return updateProfile(userCredential.user, {
           displayName: name,
-          photoURL: photoURL,
+          // photoURL: photoURL,
         })
           .then(() => {
-            setUser({ ...userCredential.user, displayName: name, photoURL: photoURL }); // Manually update the state
+            setUser({ ...userCredential.user, displayName: name }); // Manually update the state
             setLoading(false);
             return userCredential;
           })

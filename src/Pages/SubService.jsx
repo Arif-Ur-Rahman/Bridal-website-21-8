@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import m6 from "../assets/img/cut.jpg";
 import m1 from "../assets/img/adj.jpg";
 import m2 from "../assets/img/alt.jpg";
-import Navbar from "../Home/Shared/NavbarNew";
+import Navbar from "../Home/Shared/SubNavbar";
 import Footer from "../Home/Shared/Footer";
 
 const tabData = [
@@ -36,7 +36,7 @@ const SubService = () => {
   return (
     <>
     <Navbar></Navbar>
-    <div className="container-tab bg-light py-8 bg-yellow-50 px-20 mt-36 ">
+    <div className="container-tab bg-light py-8 bg-[#FDF5EB]  px-20 mt-36 ">
       <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: "500px" }}>
         <h1 className="text-4xl font-semibold">We Provide Best Professional Services</h1>
       </div>

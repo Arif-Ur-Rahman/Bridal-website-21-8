@@ -18,14 +18,14 @@ const RegAdmin = () => {
         console.log(data);
 
         try {
-            const res = await createUser(data.name,data.photo, data.email, data.password);
+            const res = await createUser(data.name, data.email, data.password);
             const loggedUser = res.user;
             console.log(loggedUser);
             const userInfo = {
                 name: data.name,
-		            photo: data.photo,
+		            // photo: data.photo,
                 email: data.email,
-		            password: data.password
+		        password: data.password
                  
 
             };
@@ -50,7 +50,7 @@ const RegAdmin = () => {
 
    return (
         <div className="space-y-40">
-            <Navbar></Navbar>
+            {/* <Navbar></Navbar> */}
             <div className="flex justify-center mt-20">
                 <div className="hero-content flex-col lg:flex-row">
                     
@@ -64,13 +64,13 @@ const RegAdmin = () => {
                                 {errors.name && <span>This field is required</span>}
                             </div>
                             
-                            <div className="form-control">
+                            {/* <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">logo Url</span>
                                 </label>
                                 <input type="text" {...register("logo", { required: true })} name='logo' placeholder="logo url" className="input input-bordered" required />
                                 {errors.logo && <span>This field is required</span>}
-                            </div>
+                            </div> */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>

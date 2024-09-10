@@ -7,7 +7,16 @@ import Sidebar from "../Home/Shared/ANavbar"; // Assuming this is your existing 
 const CalendarComponent = () => {
   const [date, setDate] = useState(new Date());
   const navigate = useNavigate();
-
+// .............Date color ...................
+  useEffect(() => {
+    // Fetch all appointments from backend
+    axios.get('http://localhost:5000/app')
+      .then(response => {
+        const appointmentDates = response.data.map(app => app.datetime.split('T')[0]);
+        setAppointments(appointmentDates); // Set appointment dates as YYYY-MM-DD
+      })
+      .catch(error => console.error('Error fetching appointments:', error));
+  }, []);
   const handleDateClick = (date) => {
     const selectedDate = new Date(date);
     // Adjust for timezone offset to ensure correct date
@@ -19,6 +28,7 @@ const CalendarComponent = () => {
     console.log('Navigating to:', `/dashboard/details/${formattedDate}`);
     navigate(`/dashboard/details/${formattedDate}`);
   };
+
 
   return (
     <>

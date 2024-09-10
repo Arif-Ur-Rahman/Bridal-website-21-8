@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../../Home/Shared/NavbarNew';
+import Navbar from '../../Home/Shared/SubNavbar';
 import Footer from '../../Home/Shared/Footer';
 import Bride from '../../Home/Section/Bride';
 
