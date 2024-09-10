@@ -69,7 +69,7 @@ const Navbar = () => {
   };
   // ..................
   return (
-    <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white hover:text-black'}`}>
+    <div className={`fixed top-0 left-0 w-screen z-50 transition-colors font-mono duration-300 py-2 lg:py-6 ${isScrolled ? 'bg-white text-black' : 'bg-transparent text-black'}`}>
       <div className="container mx-auto  space-x-1 lg:space-x-0 lg:px-10 py-2 flex flex-row items-center justify-around lg:justify-between">
         <div className="flex lg:space-x-4">
           {user ? (

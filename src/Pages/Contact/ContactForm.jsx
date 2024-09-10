@@ -2,7 +2,7 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaTwitter, FaFacebookF, FaLinke
 
 const ContactForm = () => {
     return (
-       <div className="bg-yellow-50 py-4 mt-32 mx-auto">
+       <div className="bg-[#FDF5EB]  py-4 mt-32 mx-auto">
              <div className="container mx-auto py-12">
             <div className="flex flex-col lg:flex-row justify-center items-center lg:space-x-8 mx-8">
                 {/* Contact Form */}
@@ -64,7 +64,7 @@ const ContactForm = () => {
                 </div>
 
                 {/* Contact Information */}
-                <div className="w-full lg:w-1/2 bg-yellow-50 text-center px-8 mt-8 lg:mt-0">
+                <div className="w-full lg:w-1/2 bg-[#FDF5EB]  text-center px-8 mt-8 lg:mt-0">
                     <h1 className="text-yellow-600 text-4xl font-bold">Information</h1>
                     <p className="mt-4 text-slate-500 ">Aliquyam sed elitr elitr erat sed diam ipsum eirmod eos lorem nonumy.</p>
                     <div className="mt-6 space-y-2 items-start">

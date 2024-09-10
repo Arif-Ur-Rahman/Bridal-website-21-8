@@ -17,7 +17,7 @@ const Shop2 = () => {
   return (
    <>
    <Navbar></Navbar>
-   <div className="container-fluid hero-header bg-yellow-50 pt-4 mb-4 px-16 mt-36">
+   <div className="container-fluid hero-header bg-[#FDF5EB]  pt-4 px-16 mt-36">
     {/* head to head mamu */}
     {/* <div className="container-fluid bg-light py-5 mb-5">
       <div className="container py-5 mx-auto">

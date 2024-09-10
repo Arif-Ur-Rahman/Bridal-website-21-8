@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
 import UNavbar from '../Home/Shared/UNavbar';
+import Footer from '../Home/Shared/Footer';
 
 const UserDetails = () => {
   const [userEmail, setUserEmail] = useState(null);
@@ -48,7 +49,7 @@ const UserDetails = () => {
   };
 
   return (
-  <>
+  <div className="bg-[#FDF5EB] ">
   <UNavbar></UNavbar>
   <div className="p-4 font-mono my-16 lg:my-36">
       <h1 className="text-xl font-bold mb-4 my-10 text-center">User Appointment Details</h1>
@@ -84,7 +85,8 @@ const UserDetails = () => {
 
      </div>
     </div>
-  </>
+    <Footer></Footer>
+    </div>
   );
 };
 

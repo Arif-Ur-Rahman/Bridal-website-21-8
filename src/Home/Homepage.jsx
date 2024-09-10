@@ -12,6 +12,7 @@ import Footer from './Shared/Footer';
 import WhatsApp from './WhatsApp';
 import Scroll from './Scroll';
 import DemoCarousel from './hero/HeroSection';
+// import ImageSlider from './hero/HeroSection';
 
 
 const Homepage = () => {
@@ -19,6 +20,7 @@ const Homepage = () => {
         <div className='min-h-screen flex flex-col'>
             <NavbarNew />
             <DemoCarousel></DemoCarousel>
+            {/* <ImageSlider></ImageSlider> */}
             <ChooseUs />
             <Collection></Collection>
             <Reels />

@@ -11,7 +11,7 @@ const AboutSection = () => {
     <>
   <Navbar></Navbar>
     
-    <div className="bg-yellow-50">
+    <div className="bg-[#FDF5EB] ">
     <div className="container mx-auto py-10 px-10 mt-36 min-h-screen">
       <div className="flex flex-wrap -mx-4">
       <div className="w-full lg:w-1/2 px-4 wow fadeInUp" data-wow-delay="0.1s">

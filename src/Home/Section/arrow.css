@@ -1,0 +1,16 @@
+.timeline-box-arrow {
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: 0;
+    /* Optional box-shadow */
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px 2px; */
+  }
+  @media screen and (max-width: 767px) { 
+
+    /* CSS rules for mobile devices */
+}

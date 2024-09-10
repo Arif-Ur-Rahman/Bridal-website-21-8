@@ -19,7 +19,7 @@ const Groom = () => {
   };
 
   return (
-    <section className="relative pt-16 pb-32 px-4 mb-4 bg-[#FDF5EB] font-mono">
+    <section className="relative pt-16 pb-32 px-4  bg-[#FDF5EB] font-mono">
       <h1 className='text-center text-3xl mb-20'>Grooms Collections</h1>
       <div className="container mx-auto relative mt-4">
         <div className="relative">

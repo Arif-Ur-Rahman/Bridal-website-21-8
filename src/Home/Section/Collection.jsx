@@ -26,7 +26,7 @@ const NewCollections = () => {
 
     return (
         <section className='bg-[#FDF5EB] font-mono'>
-            <div className="pt-5 pb-20  mb-4">
+            <div className="pt-5 pb-20">
                 <div className="container py-5 mx-auto">
                     <div className="text-center mx-auto mb-5" style={{ maxWidth: '500px' }}>
                         <h1 className="text-3xl mb-4 py-6">Our New Collections</h1>
