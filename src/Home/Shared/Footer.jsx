@@ -3,7 +3,7 @@ import { FaTwitter, FaFacebookF, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaPh
 
 const Footer = () => {
   return (
-    <div className="relative bottom-0 right-0 w-full  bg-zinc-900 text-white py-5 px-4 lg:px-5 max-w-screen">
+    <div className="relative bottom-0 right-0 w-full  bg-zinc-900 text-white py-5 px-4 lg:px-5 max-w-screen overflow-hidden">
       <div className="lg:flex lg:flex-1">
         {/* Left Side */}
         <div className="w-full lg:w-1/2 lg:pr-5 relative m-10 space-y-4">

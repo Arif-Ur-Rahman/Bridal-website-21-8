@@ -44,7 +44,7 @@ const ChooseUs = () => {
                 </div>
 
                 <div className="flex flex-col  gap-4 lg:pl-4">
-                <div className="flex justify-center items-center relative timeline-box rounded-4 p-1">
+                <div className="flex justify-center items-center relative bg-white rounded-lg p-1">
                 <div
                   className="hidden lg:block w-[10px] h-[10px] bg-white absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 z-0"
             
@@ -52,7 +52,7 @@ const ChooseUs = () => {
  
 
                     {/* <img src={lr} alt="" className='h-4 hidden lg:block '/> */}
-                    <article className=" flex lg:block justify-center items-center flex-col space-y-2 lg:space-y-0 relative py-10 px-6  w-96 lg:w-[26.375rem] lg:h-[8rem]
+                    <article className=" flex lg:block justify-center items-center flex-col space-y-2 lg:space-y-0 relative py-10 px-6  w-80 lg:w-[26.375rem] lg:h-[8rem]
                     ">
                       <div className="absolute top-0 left-0 w-0 h-0 border-t-[1rem] border-b-[1rem] border-l-[1rem] border-transparent border-r-white transform translate-x-[-1rem] translate-y-[-1rem]"></div>
                       {/* ...... */}
@@ -67,13 +67,13 @@ const ChooseUs = () => {
                       </p>
                     </article>
                   </div>
-                  <div className="flex justify-center items-center relative timeline-box rounded-4 p-1">
+                  <div className="flex justify-center items-center relative bg-white rounded-lg p-1">
                 <div
                   className="hidden lg:block w-[10px] h-[10px] bg-white absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 z-0"
             
                 ></div>
                     {/* <img src={lr} alt="" className='h-4 hidden lg:block'/> */}
-                    <article className="flex lg:block justify-center items-center flex-col space-y-2 lg:space-y-0 relative py-10 px-6 w-96 lg:w-[26.375rem] lg:h-[8rem]
+                    <article className="flex lg:block justify-center items-center flex-col space-y-2 lg:space-y-0 relative py-10 px-6 w-80 lg:w-[26.375rem] lg:h-[8rem]
   ">
                       <div className="absolute top-0 left-0 w-0 h-0 border-t-[1rem] border-b-[1rem] border-l-[1rem] border-transparent border-r-white transform translate-x-[-1rem] translate-y-[-1rem]"></div>
                     {/* .. */}
@@ -88,13 +88,13 @@ const ChooseUs = () => {
                       </p>
                     </article>
                   </div>
-                  <div className="flex justify-center items-center relative timeline-box rounded-4 p-1">
+                  <div className="flex justify-center items-center relative bg-white  rounded-lg p-1">
                 <div
                   className="hidden lg:block w-[10px] h-[10px] bg-white absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 z-0"
             
                 ></div>
                     {/* <img src={lr} alt="" className='h-4 hidden lg:block'/> */}
-                    <article className="flex lg:block justify-center items-center flex-col space-y-2 lg:space-y-0 relative py-10 px-6 w-96 lg:w-[26.375rem] lg:h-[8rem]
+                    <article className="flex lg:block justify-center items-center flex-col space-y-2 lg:space-y-0 relative py-10 px-6 w-80 lg:w-[26.375rem] lg:h-[8rem]
   ">
                       <div className="absolute top-0 left-0 w-0 h-0 border-t-[1rem] border-b-[1rem] border-l-[1rem] border-transparent border-r-white transform translate-x-[-1rem] translate-y-[-1rem]"></div>
                       {/* .... */}
