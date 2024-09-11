@@ -6,5 +6,5 @@
   
   .appointment-tile:hover {
     background-color: green !important ; /* Light green on hover */
-    font-size: large;
+    font-size: larger;
   }

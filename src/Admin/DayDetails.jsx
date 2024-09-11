@@ -51,7 +51,7 @@ const DayDetails = () => {
         {error ? (
           <p>{error}</p>
         ) : details.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 lg:ml-44 space-x-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6 lg:ml-44 space-x-2">
             {details.map((detail) => (
               <div key={detail._id} className="card bg-base-100 shadow-xl w-64 lg:w-96 mx-auto ">
                 <div className="card-body text-xs lg:text-base">

@@ -37,19 +37,19 @@ const DemoCarousel = () => {
     };
 
     return (
-        <div className="relative w-full overflow-hidden">
+        <div className="relative w-full overflow-hidden ">
             <Slider {...settings}>
                 <div className="w-full">
-                    <img src={img1} alt="Slide 1" className="w-full h-auto object-cover" />
+                    <img src={img1} alt="Slide 1" className="w-full h-[400px] lg:h-auto lg:object-cover" />
                 </div>
                 <div className="w-full">
-                    <img src={img2} alt="Slide 2" className="w-full h-auto object-cover" />
+                    <img src={img2} alt="Slide 2" className="w-full h-[400px] lg:h-auto lg:object-cover" />
                 </div>
                 <div className="w-full">
-                    <img src={img3} alt="Slide 3" className="w-full h-auto object-cover" />
+                    <img src={img3} alt="Slide 3" className="w-full h-[400px] lg:h-auto lg:object-cover" />
                 </div>
                 <div className="w-full">
-                    <img src={img4} alt="Slide 4" className="w-full h-auto object-cover" />
+                    <img src={img4} alt="Slide 4" className="w-full h-[400px] lg:h-auto lg:object-cover" />
                 </div>
             </Slider>
         </div>
