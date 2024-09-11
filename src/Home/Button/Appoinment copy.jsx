@@ -22,18 +22,9 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
       .catch(err => setError("Failed to fetch off days"));
   }, []);
 
-  // useEffect(() => {
-  //   if (selectedDate) {
-  //     fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(selectedDate.toISOString().split('T')[0])}`)
-  //       .then(response => response.json())
-  //       .then(data => setAvailableSlots(data.slots))
-  //       .catch(err => setError("Failed to fetch available slots"));
-  //   }
-  // }, [selectedDate]);
-  // .........new part
   useEffect(() => {
     if (selectedDate) {
-      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(selectedDate)}`)
+      fetch(`http://localhost:5000/check-available-time?date=${encodeURIComponent(selectedDate.toISOString().split('T')[0])}`)
         .then(response => response.json())
         .then(data => setAvailableSlots(data.slots))
         .catch(err => setError("Failed to fetch available slots"));
@@ -73,12 +64,6 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
     }
   
     try {
-      // const response = await fetch(`http://localhost:5000/check-slot?datetime=${encodeURIComponent(datetime)}`);
-      // const slotAvailable = await response.json();
-      
-      // if (!slotAvailable.available) {
-      //   throw new Error('Selected time slot is not available.');
-      // }
       const response = await fetch(`http://localhost:5000/check-slot?datetime=${encodeURIComponent(datetime)}`);
       const slotAvailable = await response.json();
       
@@ -179,16 +164,11 @@ const AppointmentForm = ({ isOpen, handleCloseModal }) => {
             </div>
             <div className="w-1/2">
               <label className="block text-sm font-medium text-gray-700 italic pb-2">Time</label>
-              {/* <select name="time" className="select select-bordered w-full" required>
+              <select name="time" className="select select-bordered w-full" required>
                 {availableSlots.map((slot) => (
                   <option key={slot} value={slot}>{slot}</option>
                 ))}
-              </select> */}
-              <select name="time" className="select select-bordered w-full" required>
-                  {availableSlots.map((slot) => (
-                    <option key={slot} value={slot}>{slot}</option>
-                  ))}
-                </select>
+              </select>
             </div>
           </div>
           
