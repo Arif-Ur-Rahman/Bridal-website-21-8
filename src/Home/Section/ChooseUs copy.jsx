@@ -17,7 +17,7 @@ const ChooseUs = () => {
           {/* <p className="text-[#EDB354] uppercase mb-2 pt-6">Why Choose Us!</p> */}
           <h1 className="text-3xl mb-2 pt-6">Why People Choose Us!</h1>
         </div>
-        <div className="container mx-auto">
+        <div className="container py-5 mx-auto px-14">
           <div className="mx-8 lg:flex lg:justify-center gap-16 lg:items-start">
             <div className="w-full lg:w-1/2 px-8 relative">
               <div className="flex items-center justify-center">
@@ -113,7 +113,7 @@ const ChooseUs = () => {
               </div>
             </div>
 
-            <div className="lg:w-1/2 lg:px-8 pt-8 lg:pt-0 mt-4 lg:mt-0">
+            <div className="w-[300px] lg:w-1/2 lg:px-8 pt-8 lg:pt-0">
               <div className="grid lg:grid-cols-2 gap-3">
                 <figure className="lg:flex lg:flex-col items-end">
                   <img className="bg-white p-3 w-full h-auto object-cover mb-3" src={hero1} alt="Hero 1" />

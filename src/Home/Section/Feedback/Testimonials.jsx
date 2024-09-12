@@ -74,12 +74,12 @@ const TestimonialsSlider = () => {
     };
 
     return (
-        <div className="px-8">
+        <div className="px-10 lg:px-8">
             <Slider {...settings}>
                 {testimonials.map((testimonial, index) => (
-                    <div key={testimonial.id} className="p-4 transition-transform duration-500">
+                    <div key={testimonial.id} className="p-4 transition-transform duration-500 lg:w-full lg:inline-block">
                         <div className={`container mx-auto w-96 h-[250px] p-8 rounded-none ${currentSlide === index ? 'bg-[#EDB354] text-white' : 'bg-white bg-black'}`}>
-                            <div className="relative ml-6 ">
+                            <div className="relative lg:ml-6 ">
                               <div className="flex items-center">
                               <img 
                                     className="w-16 h-16 rounded-full border-1 border-white absolute top-[-5px]"
@@ -91,9 +91,9 @@ const TestimonialsSlider = () => {
                                     <p className="text-sm text-gray-500 ">{testimonial.profession}</p>
                                 </div>
                               </div>
-                                <div className="mt-8">
+                                <div className="mt-8 ">
                                     
-                                    <p className="mt-2 text-gray-500 ">{testimonial.feedback}</p>
+                                    <p className="mt-2 text-gray-500 mr-10 lg:mr-0">{testimonial.feedback}</p>
                                 </div>
                             </div>
                         </div>
