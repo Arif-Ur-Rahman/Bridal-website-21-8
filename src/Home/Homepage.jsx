@@ -1,5 +1,4 @@
 import React from 'react';
- 
 import Reels from './Section/Reels';
 import NavbarNew from './Shared/NavbarNew';
 import ChooseUs from './Section/ChooseUs';
