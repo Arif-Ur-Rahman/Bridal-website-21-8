@@ -4,10 +4,10 @@ import img1 from '../../assets/1.avif';
 import img2 from '../../assets/2.avif';
 import img3 from '../../assets/3.avif';
 import img4 from '../../assets/4.avif';
-import mb1 from '../../assets/mb1.avif';
-import mb2 from '../../assets/mb2.avif';
-import mb3 from '../../assets/mb3.avif';
-import mb4 from '../../assets/mb4.avif';
+import mb1 from '../../assets/mb1.jpeg';
+import mb2 from '../../assets/mb2.jpeg';
+import mb3 from '../../assets/mb3.jpeg';
+import mb4 from '../../assets/mb4.jpeg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './demo.css'; // Ensure this file includes necessary custom styles
@@ -63,16 +63,16 @@ const DemoCarousel = () => {
         <div className="lg:hidden relative w-full overflow-hidden bg-[#FDF5EB]">
             <Slider {...settings}>
                 <div className="w-full">
-                    <img src={mb1} alt="Slide 1" className="w-full h-auto object-cover" />
+                    <img src={mb1} alt="Slide 1" className="w- h-[950px] object-cover" />
                 </div>
                 <div className="w-full">
-                    <img src={mb3} alt="Slide 2" className="w-full h-auto object-cover" />
+                    <img src={mb3} alt="Slide 2" className="w-full h-[950px]  object-cover" />
                 </div>
                 <div className="w-full">
-                    <img src={mb2} alt="Slide 3" className="w-full h-auto object-cover" />
+                    <img src={mb2} alt="Slide 3" className="w-full h-[950px]  object-cover" />
                 </div>
                 <div className="w-full">
-                    <img src={mb4} alt="Slide 4" className="w-full h-auto object-cover" />
+                    <img src={mb4} alt="Slide 4" className="w-full h-[950px]  object-cover" />
                 </div>
             </Slider>
         </div>
